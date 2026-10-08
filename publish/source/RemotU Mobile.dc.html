@@ -1,0 +1,1398 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;1,9..144,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#E8E4DC}
+*,*::before,*::after{box-sizing:border-box}
+[data-om-starter="ios-frame"] ::-webkit-scrollbar{width:0;height:0}
+a{color:#0E5550}a:hover{color:#166D64}
+@keyframes rPulse{0%{transform:scale(1);opacity:.35}70%{transform:scale(1.5);opacity:0}100%{transform:scale(1.5);opacity:0}}
+@keyframes rSway{0%{left:0}50%{left:calc(100% - 34px)}100%{left:0}}
+@keyframes rPop{0%{transform:scale(.82);opacity:0}100%{transform:scale(1);opacity:1}}
+@keyframes rBreathe{0%{transform:scale(.9)}50%{transform:scale(1.08)}100%{transform:scale(.9)}}
+@media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important}}
+</style>
+</helmet>
+
+<div style="{{ vars }}">
+<div style="min-height:100vh;background:var(--bg,#F5F2EC);font-family:'DM Sans',system-ui,sans-serif;color:var(--ink,#1C1814);display:flex;flex-direction:column;align-items:center;gap:22px;padding:30px 20px 56px">
+
+  <div style="width:100%;max-width:640px;display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px">
+    <div>
+      <div style="font-family:'Fraunces',Georgia,serif;font-size:26px;font-weight:500;letter-spacing:-.5px;color:var(--acc,#0E5550);line-height:1.1">RemotU <span style="color:#2D9D8A">Mobile</span></div>
+      <div style="font-size:12.5px;color:var(--sub,#5F574E);margin-top:4px;font-family:'DM Mono',monospace">{{ t.subhead }}</div>
+    </div>
+    <div style="display:flex;gap:10px;align-items:center">
+      <div style="display:flex;gap:3px;background:var(--surf,#FEFCF9);border:.5px solid var(--line,#EDE9E3);border-radius:10px;padding:3px">
+        <button onClick="{{ setPatient }}" style="{{ roleBtnPat }}">{{ t.rolePat }}</button>
+        <button onClick="{{ setPro }}" style="{{ roleBtnPro }}">{{ t.rolePro }}</button>
+      </div>
+      <div style="display:flex;gap:3px;background:var(--surf,#FEFCF9);border:.5px solid var(--line,#EDE9E3);border-radius:10px;padding:3px">
+        <button onClick="{{ setIt }}" style="{{ langBtnIt }}">IT</button>
+        <button onClick="{{ setEn }}" style="{{ langBtnEn }}">EN</button>
+      </div>
+    </div>
+  </div>
+
+  <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" dark="{{ isNight }}" hint-size="402px,874px">
+    <div style="height:874px;display:flex;flex-direction:column;overflow:hidden;background:var(--bg,#F5F2EC)">
+      <div style="{{ zoomStyle }}">
+
+        <!-- ONBOARDING -->
+        <sc-if value="{{ isIntro }}" hint-placeholder-val="{{ false }}">
+        <div style="flex:1;overflow:auto;padding:70px 24px 30px;display:flex;flex-direction:column">
+          <div style="display:flex;gap:6px;margin-bottom:30px">
+            <div style="{{ ob0 }}"></div><div style="{{ ob1 }}"></div><div style="{{ ob2 }}"></div>
+          </div>
+
+          <sc-if value="{{ obIs0 }}" hint-placeholder-val="{{ true }}">
+          <div>
+            <div style="width:64px;height:64px;border-radius:20px;background:var(--accSoft,#E8F5F2);display:flex;align-items:center;justify-content:center;margin-bottom:22px">
+              <svg width="30" height="30" viewBox="0 0 30 30" fill="none"><circle cx="15" cy="15" r="11" stroke="#0E5550" stroke-width="2"></circle><path d="M10 15.5l3.4 3.4L20 12" stroke="#0E5550" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            </div>
+            <div style="font-family:'Fraunces',Georgia,serif;font-size:32px;font-weight:300;line-height:1.15;letter-spacing:-.6px;margin-bottom:10px">{{ t.obTitle }}</div>
+            <div style="font-size:16px;line-height:1.55;color:var(--sub,#6B6259)">{{ t.obBody }}</div>
+            <div style="margin-top:26px;font-size:11px;font-weight:500;letter-spacing:.7px;text-transform:uppercase;color:var(--sub,#5F574E);margin-bottom:9px">{{ t.obCode }}</div>
+            <div style="display:flex;gap:9px">
+              <div style="flex:1;height:62px;border-radius:12px;background:var(--surf,#FEFCF9);border:1.5px solid var(--line,#EDE9E3);display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:26px">4</div>
+              <div style="flex:1;height:62px;border-radius:12px;background:var(--surf,#FEFCF9);border:1.5px solid var(--line,#EDE9E3);display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:26px">8</div>
+              <div style="flex:1;height:62px;border-radius:12px;background:var(--surf,#FEFCF9);border:1.5px solid var(--line,#EDE9E3);display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:26px">2</div>
+              <div style="flex:1;height:62px;border-radius:12px;background:var(--accSoft,#E8F5F2);border:1.5px solid #2D9D8A;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:26px;color:var(--acc,#0E5550)">1</div>
+            </div>
+          </div>
+          </sc-if>
+
+          <sc-if value="{{ obIs1 }}" hint-placeholder-val="{{ false }}">
+          <div>
+            <div style="font-family:'Fraunces',Georgia,serif;font-size:30px;font-weight:300;line-height:1.15;margin-bottom:18px">{{ t.obTeamTitle }}</div>
+            <div style="background:var(--surf,#FEFCF9);border:.5px solid var(--line,#EDE9E3);border-radius:14px;padding:16px;display:flex;align-items:center;gap:14px">
+              <div style="width:52px;height:52px;border-radius:50%;background:var(--accSoft,#E8F5F2);color:var(--acc,#0E5550);display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:500">GR</div>
+              <div><div style="font-size:16px;font-weight:500">Dr.ssa Giulia Riva</div><div style="font-size:13px;color:var(--sub,#5F574E);margin-top:2px">{{ t.obTherapistRole }}</div></div>
+            </div>
+            <div style="margin-top:14px;background:var(--surf,#FEFCF9);border:.5px solid var(--line,#EDE9E3);border-radius:14px;padding:16px">
+              <div style="font-size:11px;font-weight:500;letter-spacing:.7px;text-transform:uppercase;color:var(--sub,#5F574E);margin-bottom:12px">{{ t.obPlan }}</div>
+              <div style="display:flex;flex-direction:column;gap:11px">
+                <div style="display:flex;align-items:center;gap:12px"><div style="width:38px;height:38px;border-radius:10px;background:var(--accSoft,#E8F5F2);display:flex;align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 14C3 8 7 4 15 4" stroke="#0E5550" stroke-width="2" stroke-linecap="round"></path><circle cx="3" cy="14" r="2.4" fill="#0E5550"></circle></svg></div><div style="font-size:15px">{{ t.obPlan1 }}</div></div>
+                <div style="display:flex;align-items:center;gap:12px"><div style="width:38px;height:38px;border-radius:10px;background:var(--cogSoft,#EEEDFE);display:flex;align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="5.5" cy="5.5" r="2.4" fill="#534AB7"></circle><circle cx="12.5" cy="5.5" r="2.4" fill="#534AB7" fill-opacity=".45"></circle><circle cx="5.5" cy="12.5" r="2.4" fill="#534AB7" fill-opacity=".45"></circle><circle cx="12.5" cy="12.5" r="2.4" fill="#534AB7"></circle></svg></div><div style="font-size:15px">{{ t.obPlan2 }}</div></div>
+                <div style="display:flex;align-items:center;gap:12px"><div style="width:38px;height:38px;border-radius:10px;background:#FAEEDA;display:flex;align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="#BA7517" stroke-width="2"></circle><circle cx="6.5" cy="7.5" r="1.1" fill="#BA7517"></circle><circle cx="11.5" cy="7.5" r="1.1" fill="#BA7517"></circle><path d="M6 11.5c.9 1 1.8 1.5 3 1.5s2.1-.5 3-1.5" stroke="#BA7517" stroke-width="1.8" stroke-linecap="round"></path></svg></div><div style="font-size:15px">{{ t.obPlan3 }}</div></div>
+              </div>
+            </div>
+          </div>
+          </sc-if>
+
+          <sc-if value="{{ obIs2 }}" hint-placeholder-val="{{ false }}">
+          <div>
+            <div style="font-family:'Fraunces',Georgia,serif;font-size:30px;font-weight:300;line-height:1.15;margin-bottom:8px">{{ t.obWhenTitle }}</div>
+            <div style="font-size:15.5px;color:var(--sub,#6B6259);line-height:1.5;margin-bottom:20px">{{ t.obWhenBody }}</div>
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <button onClick="{{ pickMorning }}" style="{{ remA }}">09:30 · {{ t.morning }}</button>
+              <button onClick="{{ pickAfternoon }}" style="{{ remB }}">17:30 · {{ t.afternoon }}</button>
+              <button onClick="{{ pickEvening }}" style="{{ remC }}">20:00 · {{ t.evening }}</button>
+            </div>
+          </div>
+          </sc-if>
+
+          <div style="flex:1;min-height:20px"></div>
+          <button onClick="{{ obNext }}" style="width:100%;height:58px;border:none;border-radius:14px;background:var(--acc,#0E5550);color:#fff;font-family:'DM Sans',sans-serif;font-size:17px;font-weight:500">{{ obCta }}</button>
+          <button onClick="{{ skipIntro }}" style="margin:12px auto 0;background:none;border:none;color:var(--sub,#5F574E);font-family:'DM Sans',sans-serif;font-size:13.5px">{{ t.skip }}</button>
+        </div>
+        </sc-if>
+
+        <!-- PATIENT · TODAY -->
+        <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+        <div style="flex:1;overflow:auto;padding:66px 20px 24px">
+          <div style="font-size:12px;font-family:'DM Mono',monospace;color:var(--sub,#5F574E);letter-spacing:.3px">{{ t.date }}</div>
+          <div style="font-family:'Fraunces',Georgia,serif;font-size:29px;font-weight:300;letter-spacing:-.5px;margin-top:4px;line-height:1.15">{{ t.greet }}</div>
+
+          <sc-if value="{{ adhStreak }}" hint-placeholder-val="{{ true }}">
+          <div style="margin-top:18px;background:var(--surf,#FEFCF9);border:.5px solid var(--line,#EDE9E3);border-radius:16px;padding:16px 18px">
+            <div style="display:flex;align-items:center;justify-content:space-between">
+              <div>
+                <div style="font-family:'DM Mono',monospace;font-size:30px;color:var(--acc,#0E5550);line-height:1">12</div>
+                <div style="font-size:13px;color:var(--sub,#5F574E);margin-top:3px">{{ t.streakLbl }}</div>
+              </div>
+              <div style="display:flex;gap:6px;align-items:flex-end">
+                <div style="width:12px;height:12px;border-radius:50%;background:#2D9D8A"></div>
+                <div style="width:12px;height:12px;border-radius:50%;background:#2D9D8A"></div>
+                <div style="width:12px;height:12px;border-radius:50%;background:#2D9D8A"></div>
+                <div style="width:12px;height:12px;border-radius:50%;background:#2D9D8A"></div>
+                <div style="width:12px;height:12px;border-radius:50%;background:#2D9D8A"></div>
+                <div style="width:12px;height:12px;border-radius:50%;background:#2D9D8A"></div>
+                <div style="width:12px;height:12px;border-radius:50%;border:1.5px dashed #A89F94"></div>
+              </div>
+            </div>
+          </div>
+          </sc-if>
+
+          <sc-if value="{{ adhGarden }}" hint-placeholder-val="{{ false }}">
+          <div style="margin-top:18px;background:var(--surf,#FEFCF9);border:.5px solid var(--line,#EDE9E3);border-radius:16px;padding:16px 18px">
+            <div style="font-size:14px;font-weight:500;margin-bottom:2px">{{ t.gardenTitle }}</div>
+            <div style="font-size:12.5px;color:var(--sub,#5F574E)">{{ t.gardenSub }}</div>
+            <div style="display:flex;align-items:flex-end;gap:8px;height:78px;margin-top:14px">
+              <div style="flex:1;height:22%;border-radius:6px 6px 3px 3px;background:#C4E8DF"></div>
+              <div style="flex:1;height:38%;border-radius:6px 6px 3px 3px;background:#8FD0C2"></div>
+              <div style="flex:1;height:30%;border-radius:6px 6px 3px 3px;background:#8FD0C2"></div>
+              <div style="flex:1;height:58%;border-radius:6px 6px 3px 3px;background:#56B5A3"></div>
+              <div style="flex:1;height:72%;border-radius:6px 6px 3px 3px;background:#2D9D8A"></div>
+              <div style="flex:1;height:88%;border-radius:6px 6px 3px 3px;background:#166D64"></div>
+              <div style="flex:1;height:16%;border-radius:6px 6px 3px 3px;background:var(--line,#EDE9E3);border:1.5px dashed #A89F94"></div>
+            </div>
+          </div>
+          </sc-if>
+
+          <div style="margin-top:18px;background:var(--surf,#FEFCF9);border:.5px solid var(--line,#EDE9E3);border-radius:16px;overflow:hidden">
+            <div style="padding:16px 18px 12px;display:flex;align-items:flex-start;justify-content:space-between;gap:10px">
+              <div>
+                <div style="font-size:17px;font-weight:500">{{ t.todaySession }}</div>
+                <div style="font-size:13px;color:var(--sub,#5F574E);margin-top:2px">{{ t.todayMeta }}</div>
+              </div>
+              <div style="padding:5px 11px;border-radius:20px;background:var(--accSoft,#E8F5F2);color:var(--acc,#0E5550);font-size:12px;font-weight:500;white-space:nowrap">{{ t.shortEnough }}</div>
+            </div>
+            <sc-for list="{{ blocks }}" as="b" hint-placeholder-count="4">
+              <div style="display:flex;align-items:center;gap:13px;padding:13px 18px;border-top:.5px solid var(--line,#EDE9E3)">
+                <div style="{{ b.tile }}">
+                  <div style="{{ b.dot }}"></div>
+                </div>
+                <div style="flex:1;min-width:0">
+                  <div style="font-size:15.5px;font-weight:500">{{ b.name }}</div>
+                  <div style="font-size:12.5px;color:var(--sub,#5F574E);margin-top:1px">{{ b.meta }}</div>
+                </div>
+                <div style="font-family:'DM Mono',monospace;font-size:12px;color:var(--sub,#5F574E)">{{ b.idx }}</div>
+              </div>
+            </sc-for>
+            <button onClick="{{ startSession }}" style="width:100%;height:60px;border:none;background:var(--acc,#0E5550);color:#fff;font-family:'DM Sans',sans-serif;font-size:17px;font-weight:500;display:flex;align-items:center;justify-content:center;gap:10px">
+              <svg width="16" height="18" viewBox="0 0 16 18"><path d="M2 2l12 7-12 7V2z" fill="#fff"></path></svg>
+              {{ t.start }}
+            </button>
+          </div>
+
+          <button onClick="{{ goMessages }}" style="width:100%;text-align:left;margin-top:14px;background:var(--surf,#FEFCF9);border:.5px solid var(--line,#EDE9E3);border-radius:16px;padding:15px 18px;display:flex;align-items:center;gap:13px;font-family:'DM Sans',sans-serif;color:var(--ink,#1C1814)">
+            <div style="width:40px;height:40px;border-radius:50%;background:var(--accSoft,#E8F5F2);color:var(--acc,#0E5550);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;flex-shrink:0">GR</div>
+            <div style="flex:1;min-width:0">
+              <div style="font-size:14.5px;font-weight:500">Dr.ssa Riva</div>
+              <div style="font-size:13px;color:var(--sub,#5F574E);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ t.msgPreview }}</div>
+            </div>
+            <div style="width:9px;height:9px;border-radius:50%;background:#D85A30;flex-shrink:0"></div>
+          </button>
+        </div>
+        </sc-if>
+
+        <!-- CHECK-IN -->
+        <sc-if value="{{ isCheckin }}" hint-placeholder-val="{{ false }}">
+        <div style="flex:1;overflow:auto;padding:62px 22px 24px;display:flex;flex-direction:column">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:34px">
+            <button onClick="{{ goHome }}" aria-label="{{ t.aBack }}" style="width:44px;height:44px;border-radius:50%;border:.5px solid var(--line,#EDE9E3);background:var(--surf,#FEFCF9);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+              <svg width="11" height="18" viewBox="0 0 11 18" fill="none"><path d="M9 2L2 9l7 7" stroke="#6B6259" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            </button>
+            <div style="flex:1;display:flex;gap:5px">
+              <div style="{{ ci0 }}"></div><div style="{{ ci1 }}"></div><div style="{{ ci2 }}"></div>
+            </div>
+          </div>
+          <div style="width:72px;height:72px;border-radius:22px;background:var(--accSoft,#E8F5F2);display:flex;align-items:center;justify-content:center;margin-bottom:20px">
+            <div style="{{ ciIcon }}"></div>
+          </div>
+          <div style="font-family:'Fraunces',Georgia,serif;font-size:31px;font-weight:300;line-height:1.15;letter-spacing:-.5px">{{ ciQ }}</div>
+          <div style="font-size:15px;color:var(--sub,#5F574E);margin-top:8px">{{ t.tapOne }}</div>
+          <div style="display:flex;gap:10px;margin-top:32px">
+            <sc-for list="{{ ciScale }}" as="s" hint-placeholder-count="5">
+              <button onClick="{{ s.pick }}" style="{{ s.style }}">{{ s.label }}</button>
+            </sc-for>
+          </div>
+          <div style="display:flex;justify-content:space-between;margin-top:10px;font-size:12px;color:var(--sub,#5F574E)">
+            <span>{{ ciLow }}</span><span>{{ ciHigh }}</span>
+          </div>
+          <div style="flex:1;min-height:24px"></div>
+          <button onClick="{{ ciNext }}" style="{{ ciNextStyle }}">{{ ciCta }}</button>
+        </div>
+        </sc-if>
+
+        <!-- MOTOR PLAYER -->
+        <sc-if value="{{ isPlayer }}" hint-placeholder-val="{{ false }}">
+        <div style="flex:1;overflow:auto;display:flex;flex-direction:column;background:var(--playerBg,#FAF8F4)">
+          <div style="padding:60px 18px 12px;display:flex;align-items:center;gap:12px;flex-shrink:0">
+            <button onClick="{{ goHome }}" aria-label="{{ t.aClose }}" style="width:44px;height:44px;border-radius:50%;border:none;background:var(--surf,#FEFCF9);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 2l10 10M12 2L2 12" stroke="#6B6259" stroke-width="2.2" stroke-linecap="round"></path></svg>
+            </button>
+            <div style="flex:1;display:flex;gap:4px">
+              <div style="{{ pg0 }}"></div><div style="{{ pg1 }}"></div><div style="{{ pg2 }}"></div><div style="{{ pg3 }}"></div>
+            </div>
+            <div style="font-family:'DM Mono',monospace;font-size:12.5px;color:var(--sub,#5F574E);flex-shrink:0">{{ pStep }}</div>
+            <button onClick="{{ openHowTo }}" style="height:44px;padding:0 14px;border-radius:22px;border:none;background:var(--accSoft,#E8F5F2);color:var(--acc,#0E5550);font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;flex-shrink:0;display:flex;align-items:center;gap:6px">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.6" stroke="currentColor" stroke-width="1.6"></circle><path d="M6.2 6.3c.2-1 1-1.6 1.9-1.6 1 0 1.8.7 1.8 1.6 0 1.3-1.8 1.4-1.8 2.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path><circle cx="8.1" cy="11.4" r=".9" fill="currentColor"></circle></svg>
+              {{ t.howShort }}
+            </button>
+          </div>
+
+          <!-- FOCUS -->
+          <sc-if value="{{ pFocus }}" hint-placeholder-val="{{ false }}">
+          <div style="flex:1;display:flex;flex-direction:column;padding:0 20px 20px">
+            <div style="height:250px;border-radius:18px;background:repeating-linear-gradient(135deg,#EDE9E3 0 10px,#F7F4EF 10px 20px);display:flex;align-items:flex-end;justify-content:center;padding:14px;margin-bottom:18px">
+              <div style="font-family:'DM Mono',monospace;font-size:11px;color:#6B6259;background:#FEFCF9;border-radius:20px;padding:5px 12px">{{ t.ph }}</div>
+            </div>
+            <div style="font-family:'Fraunces',Georgia,serif;font-size:30px;font-weight:300;line-height:1.12;letter-spacing:-.5px">{{ exName }}</div>
+            <div style="flex:1;min-height:14px"></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:14px">
+              <button onClick="{{ addRep }}" style="position:relative;width:186px;height:186px;border-radius:50%;border:none;background:var(--acc,#0E5550);color:#fff;font-family:'DM Mono',monospace;font-size:76px;display:flex;align-items:center;justify-content:center">
+                {{ reps }}
+                <span style="position:absolute;inset:0;border-radius:50%;border:3px solid #2D9D8A;animation:rPulse 2.4s ease-out infinite"></span>
+              </button>
+              <div style="font-size:15px;color:var(--sub,#6B6259)">{{ t.tapToCount }}</div>
+              <div style="display:flex;gap:7px">
+                <sc-for list="{{ setDots }}" as="d" hint-placeholder-count="3">
+                  <div style="{{ d.style }}"></div>
+                </sc-for>
+              </div>
+            </div>
+            <div style="flex:1;min-height:14px"></div>
+            <button onClick="{{ nextStep }}" style="{{ nextBtn }}">{{ nextLabel }}</button>
+          </div>
+          </sc-if>
+
+          <!-- COACH -->
+          <sc-if value="{{ pCoach }}" hint-placeholder-val="{{ true }}">
+          <div style="flex:1;display:flex;flex-direction:column;padding:0 18px 20px;gap:12px">
+            <div style="background:var(--surf,#FEFCF9);border:.5px solid var(--line,#EDE9E3);border-radius:16px;overflow:hidden">
+              <div style="height:168px;background:repeating-linear-gradient(135deg,#EDE9E3 0 10px,#F7F4EF 10px 20px);display:flex;align-items:flex-end;justify-content:center;padding:12px">
+                <div style="font-family:'DM Mono',monospace;font-size:11px;color:#6B6259;background:#FEFCF9;border-radius:20px;padding:5px 12px">{{ t.ph }}</div>
+              </div>
+              <div style="padding:15px 17px">
+                <div style="font-size:20px;font-weight:500;line-height:1.25">{{ exName }}</div>
+                <div style="font-size:13.5px;color:var(--sub,#6B6259);line-height:1.55;padding:10px 12px;background:var(--soft,#FAF8F4);border-left:3px solid #8FD0C2;border-radius:0 8px 8px 0;margin-top:10px">{{ exWhy }}</div>
+              </div>
+            </div>
+            <div style="background:var(--accSoft,#E8F5F2);border-radius:14px;padding:14px;display:flex;gap:12px;align-items:flex-start">
+              <div style="width:38px;height:38px;border-radius:10px;background:var(--acc,#0E5550);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                <svg width="17" height="17" viewBox="0 0 17 17" fill="none"><path d="M3 6.5h2.5L9 3.5v10L5.5 10.5H3v-4z" fill="#fff"></path><path d="M12 5.5c1.2 1.2 1.2 4.8 0 6" stroke="#fff" stroke-width="1.7" stroke-linecap="round"></path></svg>
+              </div>
+              <div style="font-size:15px;line-height:1.5;color:var(--accInk,#052C29)">{{ exCue }}</div>
+            </div>
+            <div style="background:var(--surf,#FEFCF9);border:.5px solid var(--line,#EDE9E3);border-radius:16px;padding:15px 17px">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+                <div style="display:flex;align-items:baseline"><span style="font-family:'DM Mono',monospace;font-size:40px;color:var(--acc,#166D64);line-height:1">{{ clock }}</span></div>
+                <button onClick="{{ toggleTimer }}" style="{{ timerBtn }}">{{ timerLabel }}</button>
+              </div>
+              <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+                <div style="display:flex;align-items:center;gap:11px">
+                  <button onClick="{{ subRep }}" style="width:46px;height:46px;border-radius:50%;border:.5px solid var(--line,#EDE9E3);background:transparent;font-size:22px;color:var(--sub,#6B6259)">−</button>
+                  <div style="font-family:'DM Mono',monospace;font-size:30px;min-width:44px;text-align:center">{{ reps }}</div>
+                  <button onClick="{{ addRep }}" style="width:46px;height:46px;border-radius:50%;border:.5px solid var(--line,#EDE9E3);background:transparent;font-size:22px;color:var(--sub,#6B6259)">+</button>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:4px">
+                  <div style="font-size:11px;letter-spacing:.6px;text-transform:uppercase;color:var(--sub,#5F574E)">{{ t.sets }}</div>
+                  <div style="display:flex;gap:6px">
+                    <sc-for list="{{ setDots }}" as="d" hint-placeholder-count="3">
+                      <div style="{{ d.style }}"></div>
+                    </sc-for>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button onClick="{{ nextStep }}" style="{{ nextBtn }}">{{ nextLabel }}</button>
+          </div>
+          </sc-if>
+
+          <!-- RITMO -->
+          <sc-if value="{{ pRitmo }}" hint-placeholder-val="{{ false }}">
+          <div style="flex:1;display:flex;flex-direction:column;padding:0 20px 20px;gap:18px">
+            <div style="font-family:'Fraunces',Georgia,serif;font-size:27px;font-weight:300;line-height:1.15">{{ exName }}</div>
+            <div style="background:var(--surf,#FEFCF9);border:.5px solid var(--line,#EDE9E3);border-radius:20px;padding:24px 20px;display:flex;flex-direction:column;align-items:center;gap:22px">
+              <div style="width:140px;height:140px;border-radius:50%;background:var(--accSoft,#E8F5F2);display:flex;align-items:center;justify-content:center;animation:rBreathe 4s ease-in-out infinite">
+                <div style="width:78px;height:78px;border-radius:50%;background:var(--acc,#0E5550);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:26px">{{ reps }}</div>
+              </div>
+              <div style="font-size:15.5px;color:var(--sub,#6B6259);text-align:center;line-height:1.5">{{ t.followRhythm }}</div>
+              <div style="position:relative;width:100%;height:34px;border-radius:20px;background:var(--soft,#FAF8F4);border:.5px solid var(--line,#EDE9E3)">
+                <div style="position:absolute;top:3px;width:28px;height:26px;border-radius:16px;background:#2D9D8A;animation:rSway 4s ease-in-out infinite"></div>
+              </div>
+              <div style="display:flex;gap:8px;width:100%">
+                <button onClick="{{ addRep }}" style="flex:1;height:52px;border-radius:13px;border:none;background:var(--acc,#0E5550);color:#fff;font-family:'DM Sans',sans-serif;font-size:15.5px;font-weight:500">{{ t.countOne }}</button>
+                <button onClick="{{ toggleTimer }}" style="{{ timerBtnWide }}">{{ timerLabel }}</button>
+              </div>
+            </div>
+            <div style="display:flex;justify-content:center;gap:7px">
+              <sc-for list="{{ setDots }}" as="d" hint-placeholder-count="3">
+                <div style="{{ d.style }}"></div>
+              </sc-for>
+            </div>
+            <div style="flex:1;min-height:8px"></div>
+            <button onClick="{{ nextStep }}" style="{{ nextBtn }}">{{ nextLabel }}</button>
+          </div>
+          </sc-if>
+        </div>
+        </sc-if>
+
+        <!-- COGNITIVE -->
+        <sc-if value="{{ isCog }}" hint-placeholder-val="{{ false }}">
+        <div style="flex:1;overflow:auto;display:flex;flex-direction:column;padding:60px 20px 22px">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:22px">
+            <button onClick="{{ goHome }}" aria-label="{{ t.aClose }}" style="width:44px;height:44px;border-radius:50%;border:none;background:var(--surf,#FEFCF9);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 2l10 10M12 2L2 12" stroke="#6B6259" stroke-width="2.2" stroke-linecap="round"></path></svg>
+            </button>
+            <div style="flex:1;height:6px;border-radius:4px;background:var(--line,#EDE9E3);overflow:hidden">
+              <div style="{{ cogProg }}"></div>
+            </div>
+            <div style="font-family:'DM Mono',monospace;font-size:12.5px;color:var(--sub,#5F574E)">{{ cogCount }}</div>
+          </div>
+          <div style="display:inline-flex;align-self:flex-start;padding:5px 11px;border-radius:20px;background:var(--cogSoft,#EEEDFE);color:#534AB7;font-size:12px;font-weight:500">{{ t.visualMemory }}</div>
+          <div style="font-family:'Fraunces',Georgia,serif;font-size:27px;font-weight:300;line-height:1.2;margin-top:12px">{{ cogPrompt }}</div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:24px">
+            <sc-for list="{{ cogCells }}" as="c" hint-placeholder-count="9">
+              <button onClick="{{ c.tap }}" aria-label="{{ c.label }}" style="{{ c.style }}"></button>
+            </sc-for>
+          </div>
+          <div style="flex:1;min-height:18px"></div>
+          <div style="background:var(--surf,#FEFCF9);border:.5px solid var(--line,#EDE9E3);border-radius:14px;padding:13px 15px;display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+            <div style="font-size:13.5px;color:var(--sub,#6B6259)">{{ t.correctSoFar }}</div>
+            <div style="font-family:'DM Mono',monospace;font-size:17px;color:#534AB7">{{ cogScore }}</div>
+          </div>
+          <button onClick="{{ cogAction }}" style="{{ cogBtn }}">{{ cogCta }}</button>
+        </div>
+        </sc-if>
+
+        <!-- DONE -->
+        <sc-if value="{{ isDone }}" hint-placeholder-val="{{ false }}">
+        <div style="flex:1;overflow:auto;padding:96px 24px 24px;display:flex;flex-direction:column;align-items:center;text-align:center">
+          <div style="width:88px;height:88px;border-radius:50%;background:var(--accSoft,#E8F5F2);display:flex;align-items:center;justify-content:center;animation:rPop .3s ease">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M11 20.5l6.5 6.5L29 14" stroke="#0E5550" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          </div>
+          <div style="font-family:'Fraunces',Georgia,serif;font-size:31px;font-weight:300;color:var(--acc,#0E5550);margin-top:20px;line-height:1.15">{{ t.doneTitle }}</div>
+          <div style="font-size:15.5px;color:var(--sub,#6B6259);line-height:1.55;margin-top:10px;max-width:300px">{{ doneSub }}</div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;width:100%;margin-top:26px">
+            <div style="background:var(--surf,#FEFCF9);border:.5px solid var(--line,#EDE9E3);border-radius:14px;padding:15px 8px">
+              <div style="font-family:'DM Mono',monospace;font-size:24px;color:var(--acc,#166D64)">{{ doneMin }}</div>
+              <div style="font-size:12px;color:var(--sub,#5F574E);margin-top:3px">{{ t.minutes }}</div>
+            </div>
+            <div style="background:var(--surf,#FEFCF9);border:.5px solid var(--line,#EDE9E3);border-radius:14px;padding:15px 8px">
+              <div style="font-family:'DM Mono',monospace;font-size:24px;color:var(--acc,#166D64)">{{ doneReps }}</div>
+              <div style="font-size:12px;color:var(--sub,#5F574E);margin-top:3px">{{ t.reps }}</div>
+            </div>
+            <div style="background:var(--surf,#FEFCF9);border:.5px solid var(--line,#EDE9E3);border-radius:14px;padding:15px 8px">
+              <div style="font-family:'DM Mono',monospace;font-size:24px;color:#534AB7">{{ cogScore }}</div>
+              <div style="font-size:12px;color:var(--sub,#5F574E);margin-top:3px">{{ t.memory }}</div>
+            </div>
+          </div>
+          <sc-if value="{{ adhAny }}" hint-placeholder-val="{{ true }}">
+          <div style="width:100%;margin-top:14px;background:var(--accSoft,#E8F5F2);border-radius:16px;padding:16px 18px;display:flex;align-items:center;gap:14px;text-align:left">
+            <div style="width:44px;height:44px;border-radius:12px;background:var(--acc,#0E5550);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7.5" stroke="#fff" stroke-width="2"></circle><path d="M10 5.5V10l3 2" stroke="#fff" stroke-width="2" stroke-linecap="round"></path></svg>
+            </div>
+            <div>
+              <div style="font-size:15px;font-weight:500;color:var(--accInk,#052C29)">{{ rewardTitle }}</div>
+              <div style="font-size:13px;color:var(--acc,#166D64);margin-top:2px">{{ rewardSub }}</div>
+            </div>
+          </div>
+          </sc-if>
+          <div style="flex:1;min-height:22px"></div>
+          <button onClick="{{ goProgress }}" style="width:100%;height:56px;border:none;border-radius:14px;background:var(--acc,#0E5550);color:#fff;font-family:'DM Sans',sans-serif;font-size:16.5px;font-weight:500">{{ t.seeProgress }}</button>
+          <button onClick="{{ goHome }}" style="margin-top:12px;background:none;border:none;color:var(--sub,#5F574E);font-family:'DM Sans',sans-serif;font-size:14px">{{ t.backHome }}</button>
+        </div>
+        </sc-if>
+
+        <!-- PROGRESS -->
+        <sc-if value="{{ isProgress }}" hint-placeholder-val="{{ false }}">
+        <div style="flex:1;overflow:auto;padding:66px 20px 24px">
+          <div style="font-family:'Fraunces',Georgia,serif;font-size:29px;font-weight:300;letter-spacing:-.5px">{{ t.progressTitle }}</div>
+          <div style="font-size:13.5px;color:var(--sub,#5F574E);margin-top:4px">{{ t.progressSub }}</div>
+
+          <div style="margin-top:18px;background:var(--surf,#FEFCF9);border:.5px solid var(--line,#EDE9E3);border-radius:16px;padding:16px 18px">
+            <div style="display:flex;align-items:baseline;justify-content:space-between">
+              <div style="font-size:14px;font-weight:500">{{ t.adherence }}</div>
+              <div style="font-family:'DM Mono',monospace;font-size:20px;color:var(--acc,#166D64)">86%</div>
+            </div>
+            <div style="display:flex;align-items:flex-end;gap:7px;height:92px;margin-top:16px">
+              <div style="flex:1;height:80%;border-radius:6px;background:#2D9D8A"></div>
+              <div style="flex:1;height:100%;border-radius:6px;background:#166D64"></div>
+              <div style="flex:1;height:40%;border-radius:6px;background:#C4E8DF"></div>
+              <div style="flex:1;height:90%;border-radius:6px;background:#2D9D8A"></div>
+              <div style="flex:1;height:70%;border-radius:6px;background:#2D9D8A"></div>
+              <div style="flex:1;height:0%;border-radius:6px;background:var(--line,#EDE9E3);min-height:5px"></div>
+              <div style="flex:1;height:95%;border-radius:6px;background:#166D64"></div>
+            </div>
+            <div style="display:flex;gap:7px;margin-top:7px">
+              <sc-for list="{{ weekDays }}" as="d" hint-placeholder-count="7">
+                <div style="flex:1;text-align:center;font-size:11px;font-family:'DM Mono',monospace;color:var(--sub,#5F574E)">{{ d }}</div>
+              </sc-for>
+            </div>
+          </div>
+
+          <div style="margin-top:14px;background:var(--surf,#FEFCF9);border:.5px solid var(--line,#EDE9E3);border-radius:16px;overflow:hidden">
+            <sc-for list="{{ metrics }}" as="m" hint-placeholder-count="3">
+              <div style="padding:14px 18px;border-bottom:.5px solid var(--line,#EDE9E3);display:flex;align-items:center;gap:12px">
+                <div style="flex:1;min-width:0">
+                  <div style="font-size:15px;font-weight:500">{{ m.name }}</div>
+                  <div style="font-size:12.5px;color:var(--sub,#5F574E);margin-top:1px">{{ m.note }}</div>
+                </div>
+                <div style="font-family:'DM Mono',monospace;font-size:17px">{{ m.val }}</div>
+                <div style="{{ m.trendStyle }}">{{ m.trend }}</div>
+              </div>
+            </sc-for>
+          </div>
+
+          <div style="margin-top:14px;background:var(--accSoft,#E8F5F2);border-radius:16px;padding:16px 18px">
+            <div style="font-size:11px;letter-spacing:.7px;text-transform:uppercase;color:var(--acc,#166D64);margin-bottom:7px">{{ t.noteFrom }}</div>
+            <div style="font-size:15px;line-height:1.55;color:var(--accInk,#052C29)">{{ t.therapistNote }}</div>
+          </div>
+        </div>
+        </sc-if>
+
+        <!-- PLAN -->
+        <sc-if value="{{ isPlan }}" hint-placeholder-val="{{ false }}">
+        <div style="flex:1;overflow:auto;padding:66px 20px 24px">
+          <div style="font-family:'Fraunces',Georgia,serif;font-size:29px;font-weight:300;letter-spacing:-.5px">{{ t.planTitle }}</div>
+          <div style="font-size:13.5px;color:var(--sub,#5F574E);margin-top:4px">{{ t.planSub }}</div>
+          <div style="display:flex;gap:6px;margin-top:18px">
+            <sc-for list="{{ planWeek }}" as="d" hint-placeholder-count="7">
+              <div style="{{ d.style }}">
+                <div style="font-size:11px;font-family:'DM Mono',monospace;opacity:.7">{{ d.d }}</div>
+                <div style="{{ d.dotStyle }}"></div>
+              </div>
+            </sc-for>
+          </div>
+          <sc-for list="{{ planGroups }}" as="g" hint-placeholder-count="2">
+            <div style="margin-top:20px">
+              <div style="font-size:11px;font-weight:500;letter-spacing:.7px;text-transform:uppercase;color:var(--sub,#5F574E);margin-bottom:9px">{{ g.title }}</div>
+              <div style="background:var(--surf,#FEFCF9);border:.5px solid var(--line,#EDE9E3);border-radius:16px;overflow:hidden">
+                <sc-for list="{{ g.items }}" as="it" hint-placeholder-count="3">
+                  <button onClick="{{ it.open }}" style="width:100%;text-align:left;padding:14px 17px;border:none;border-bottom:.5px solid var(--line,#EDE9E3);background:transparent;display:flex;align-items:center;gap:13px;font-family:'DM Sans',sans-serif;color:var(--ink,#1C1814);min-height:64px">
+                    <div style="{{ it.tile }}"><div style="{{ it.dot }}"></div></div>
+                    <div style="flex:1;min-width:0">
+                      <div style="font-size:15px;font-weight:500">{{ it.name }}</div>
+                      <div style="font-size:12.5px;color:var(--sub,#5F574E);margin-top:1px;font-family:'DM Mono',monospace">{{ it.dose }}</div>
+                    </div>
+                    <div style="{{ it.tagStyle }}">{{ it.tag }}</div>
+                    <sc-if value="{{ it.canOpen }}" hint-placeholder-val="{{ true }}">
+                      <svg width="9" height="15" viewBox="0 0 9 15" fill="none"><path d="M1.5 1.5l6 6-6 6" stroke="#6B6259" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                    </sc-if>
+                  </button>
+                </sc-for>
+              </div>
+            </div>
+          </sc-for>
+          <div style="margin-top:16px;font-size:13px;color:var(--sub,#5F574E);line-height:1.55">{{ t.planFooter }}</div>
+        </div>
+        </sc-if>
+
+        <!-- MESSAGES -->
+        <sc-if value="{{ isMessages }}" hint-placeholder-val="{{ false }}">
+        <div style="flex:1;display:flex;flex-direction:column;overflow:hidden">
+          <div style="padding:60px 18px 12px;display:flex;align-items:center;gap:12px;border-bottom:.5px solid var(--line,#EDE9E3);background:var(--surf,#FEFCF9);flex-shrink:0">
+            <div style="width:40px;height:40px;border-radius:50%;background:var(--accSoft,#E8F5F2);color:var(--acc,#0E5550);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500">{{ threadInitials }}</div>
+            <div style="flex:1;min-width:0">
+              <div style="font-size:15.5px;font-weight:500">{{ threadName }}</div>
+              <div style="font-size:12.5px;color:var(--sub,#5F574E)">{{ threadRole }}</div>
+            </div>
+          </div>
+          <div style="flex:1;overflow:auto;padding:16px 18px;display:flex;flex-direction:column;gap:10px">
+            <sc-for list="{{ msgs }}" as="m" hint-placeholder-count="4">
+              <div style="{{ m.wrap }}">
+                <div style="{{ m.bubble }}">{{ m.text }}</div>
+              </div>
+            </sc-for>
+          </div>
+          <div style="flex-shrink:0;padding:12px 18px 20px;border-top:.5px solid var(--line,#EDE9E3);background:var(--surf,#FEFCF9)">
+            <div style="font-size:11px;letter-spacing:.6px;text-transform:uppercase;color:var(--sub,#5F574E);margin-bottom:9px">{{ t.quickReply }}</div>
+            <div style="display:flex;flex-wrap:wrap;gap:8px">
+              <sc-for list="{{ quickReplies }}" as="q" hint-placeholder-count="3">
+                <button onClick="{{ q.send }}" style="padding:12px 15px;border-radius:22px;border:.5px solid var(--line,#EDE9E3);background:var(--soft,#FAF8F4);font-family:'DM Sans',sans-serif;font-size:14.5px;color:var(--ink,#1C1814);min-height:44px">{{ q.label }}</button>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+        </sc-if>
+
+        <!-- PRO · PATIENT LIST -->
+        <sc-if value="{{ isProList }}" hint-placeholder-val="{{ false }}">
+        <div style="flex:1;overflow:auto;padding:66px 20px 24px">
+          <div style="font-family:'Fraunces',Georgia,serif;font-size:29px;font-weight:300;letter-spacing:-.5px">{{ t.proTitle }}</div>
+          <div style="font-size:13.5px;color:var(--sub,#5F574E);margin-top:4px">{{ t.proSub }}</div>
+          <div style="display:flex;gap:8px;margin-top:16px">
+            <div style="flex:1;background:var(--surf,#FEFCF9);border:.5px solid var(--line,#EDE9E3);border-radius:14px;padding:13px 15px">
+              <div style="font-family:'DM Mono',monospace;font-size:22px;color:#D85A30">2</div>
+              <div style="font-size:12px;color:var(--sub,#5F574E);margin-top:2px">{{ t.needAttention }}</div>
+            </div>
+            <div style="flex:1;background:var(--surf,#FEFCF9);border:.5px solid var(--line,#EDE9E3);border-radius:14px;padding:13px 15px">
+              <div style="font-family:'DM Mono',monospace;font-size:22px;color:var(--acc,#166D64)">18</div>
+              <div style="font-size:12px;color:var(--sub,#5F574E);margin-top:2px">{{ t.sessionsToday }}</div>
+            </div>
+          </div>
+          <div style="margin-top:16px;display:flex;flex-direction:column;gap:9px">
+            <sc-for list="{{ patients }}" as="p" hint-placeholder-count="4">
+              <button onClick="{{ p.open }}" style="text-align:left;background:var(--surf,#FEFCF9);border:.5px solid var(--line,#EDE9E3);border-radius:16px;padding:14px 16px;display:flex;align-items:center;gap:13px;font-family:'DM Sans',sans-serif;color:var(--ink,#1C1814)">
+                <div style="{{ p.ring }}">
+                  <div style="width:40px;height:40px;border-radius:50%;background:var(--surf,#FEFCF9);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;color:var(--acc,#0E5550)">{{ p.ini }}</div>
+                </div>
+                <div style="flex:1;min-width:0">
+                  <div style="font-size:15.5px;font-weight:500">{{ p.name }}</div>
+                  <div style="font-size:12.5px;color:var(--sub,#5F574E);margin-top:1px">{{ p.meta }}</div>
+                </div>
+                <div style="{{ p.tagStyle }}">{{ p.tag }}</div>
+              </button>
+            </sc-for>
+          </div>
+        </div>
+        </sc-if>
+
+        <!-- PRO · PATIENT DETAIL -->
+        <sc-if value="{{ isProDetail }}" hint-placeholder-val="{{ false }}">
+        <div style="flex:1;overflow:auto;padding:60px 20px 24px">
+          <button onClick="{{ goProList }}" aria-label="{{ t.aBack }}" style="width:44px;height:44px;border-radius:50%;border:.5px solid var(--line,#EDE9E3);background:var(--surf,#FEFCF9);display:flex;align-items:center;justify-content:center;margin-bottom:16px">
+            <svg width="11" height="18" viewBox="0 0 11 18" fill="none"><path d="M9 2L2 9l7 7" stroke="#6B6259" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          </button>
+          <div style="display:flex;align-items:center;gap:14px">
+            <div style="width:56px;height:56px;border-radius:50%;background:var(--accSoft,#E8F5F2);color:var(--acc,#0E5550);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:500">{{ sel.ini }}</div>
+            <div>
+              <div style="font-size:20px;font-weight:500">{{ sel.name }}</div>
+              <div style="font-size:13px;color:var(--sub,#5F574E);margin-top:2px">{{ sel.dx }}</div>
+            </div>
+          </div>
+          <div style="display:flex;margin-top:18px;background:var(--surf,#FEFCF9);border:.5px solid var(--line,#EDE9E3);border-radius:16px;overflow:hidden">
+            <div style="flex:1;padding:14px 10px;text-align:center;border-right:.5px solid var(--line,#EDE9E3)">
+              <div style="font-family:'DM Mono',monospace;font-size:20px">{{ sel.adh }}</div>
+              <div style="font-size:11px;color:var(--sub,#5F574E);margin-top:2px;text-transform:uppercase;letter-spacing:.4px">{{ t.adherence }}</div>
+            </div>
+            <div style="flex:1;padding:14px 10px;text-align:center;border-right:.5px solid var(--line,#EDE9E3)">
+              <div style="font-family:'DM Mono',monospace;font-size:20px">{{ sel.sessions }}</div>
+              <div style="font-size:11px;color:var(--sub,#5F574E);margin-top:2px;text-transform:uppercase;letter-spacing:.4px">{{ t.sessions }}</div>
+            </div>
+            <div style="flex:1;padding:14px 10px;text-align:center">
+              <div style="font-family:'DM Mono',monospace;font-size:20px">{{ sel.week }}</div>
+              <div style="font-size:11px;color:var(--sub,#5F574E);margin-top:2px;text-transform:uppercase;letter-spacing:.4px">{{ t.week }}</div>
+            </div>
+          </div>
+          <sc-if value="{{ sel.hasAlert }}" hint-placeholder-val="{{ true }}">
+          <div style="margin-top:14px;background:#FAECE7;border-radius:16px;padding:15px 17px">
+            <div style="font-size:11px;letter-spacing:.7px;text-transform:uppercase;color:#D85A30;margin-bottom:6px">{{ t.alert }}</div>
+            <div style="font-size:15px;line-height:1.5;color:#8A3315">{{ sel.alertText }}</div>
+          </div>
+          </sc-if>
+          <div style="margin-top:16px;font-size:11px;font-weight:500;letter-spacing:.7px;text-transform:uppercase;color:var(--sub,#5F574E);margin-bottom:9px">{{ t.lastSession }}</div>
+          <div style="background:var(--surf,#FEFCF9);border:.5px solid var(--line,#EDE9E3);border-radius:16px;overflow:hidden">
+            <sc-for list="{{ sel.log }}" as="l" hint-placeholder-count="4">
+              <div style="padding:13px 17px;border-bottom:.5px solid var(--line,#EDE9E3);display:flex;align-items:center;gap:12px">
+                <div style="flex:1;min-width:0">
+                  <div style="font-size:14.5px;font-weight:500">{{ l.name }}</div>
+                  <div style="font-size:12.5px;color:var(--sub,#5F574E);margin-top:1px;font-family:'DM Mono',monospace">{{ l.done }}</div>
+                </div>
+                <div style="{{ l.painStyle }}">{{ l.pain }}</div>
+              </div>
+            </sc-for>
+          </div>
+          <div style="display:flex;gap:9px;margin-top:16px">
+            <button onClick="{{ goThread }}" style="flex:1;height:54px;border-radius:14px;border:.5px solid var(--line,#EDE9E3);background:var(--surf,#FEFCF9);font-family:'DM Sans',sans-serif;font-size:15px;font-weight:500;color:var(--ink,#1C1814)">{{ t.message }}</button>
+            <button onClick="{{ adaptPlan }}" style="flex:1;height:54px;border-radius:14px;border:none;background:var(--acc,#0E5550);color:#fff;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:500">{{ adaptLabel }}</button>
+          </div>
+        </div>
+        </sc-if>
+
+        <!-- LIBRARY -->
+        <sc-if value="{{ isLibrary }}" hint-placeholder-val="{{ false }}">
+        <div style="flex:1;display:flex;flex-direction:column;overflow:hidden">
+          <div style="flex-shrink:0;padding:60px 20px 12px;background:var(--surf,#FEFCF9);border-bottom:.5px solid var(--line,#EDE9E3)">
+            <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px">
+              <div style="font-family:'Fraunces',Georgia,serif;font-size:26px;font-weight:300;letter-spacing:-.5px">{{ t.libTitle }}</div>
+              <div style="font-family:'DM Mono',monospace;font-size:12px;color:var(--sub,#5F574E)">{{ libCount }}</div>
+            </div>
+            <input value="{{ libQuery }}" onChange="{{ setQuery }}" placeholder="{{ t.libSearch }}" style="box-sizing:border-box;width:100%;margin-top:12px;height:46px;border-radius:12px;border:.5px solid var(--line,#EDE9E3);background:var(--soft,#FAF8F4);padding:0 14px;font-family:'DM Sans',sans-serif;font-size:15px;color:var(--ink,#1C1814)">
+            <div style="display:flex;gap:3px;margin-top:11px;background:var(--soft,#FAF8F4);border-radius:10px;padding:3px">
+              <button onClick="{{ setAnat }}" style="{{ libTabAnat }}">{{ t.libAnat }}</button>
+              <button onClick="{{ setFunc }}" style="{{ libTabFunc }}">{{ t.libFunc }}</button>
+              <button onClick="{{ setCog }}" style="{{ libTabCog }}">{{ t.libCog }}</button>
+            </div>
+            <div style="display:flex;gap:7px;margin-top:11px;overflow-x:auto;padding-bottom:2px;scrollbar-width:none">
+              <sc-for list="{{ libChips }}" as="c" hint-placeholder-count="5">
+                <button onClick="{{ c.tap }}" style="{{ c.style }}">{{ c.label }}</button>
+              </sc-for>
+            </div>
+          </div>
+
+          <div style="flex:1;overflow:auto;padding:16px 20px 22px">
+            <sc-if value="{{ libIsCog }}" hint-placeholder-val="{{ false }}">
+            <div>
+              <div style="background:var(--cogSoft,#EEEDFE);border-radius:16px;padding:16px 18px">
+                <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px">
+                  <div style="font-size:15.5px;font-weight:500;color:#3E3691">{{ t.cogReviewTitle }}</div>
+                  <div style="font-family:'DM Mono',monospace;font-size:14px;color:#3E3691">{{ cogReviewed }}</div>
+                </div>
+                <div style="font-size:13.5px;line-height:1.55;color:#453C9C;margin-top:6px">{{ t.cogReviewBody }}</div>
+              </div>
+
+              <div style="margin-top:18px;font-size:11px;font-weight:500;letter-spacing:.7px;text-transform:uppercase;color:var(--faint,#6B6259);margin-bottom:9px">{{ t.coverage }}</div>
+              <div style="display:flex;flex-wrap:wrap;gap:7px">
+                <sc-for list="{{ coverage }}" as="d" hint-placeholder-count="5">
+                  <div style="{{ d.style }}">{{ d.label }}</div>
+                </sc-for>
+              </div>
+
+              <div style="margin-top:20px;display:flex;flex-direction:column;gap:11px">
+                <sc-for list="{{ cogItems }}" as="c" hint-placeholder-count="4">
+                  <div style="background:var(--surf,#FEFCF9);border:.5px solid var(--line,#EDE9E3);border-radius:16px;overflow:hidden">
+                    <div style="padding:14px 16px 12px;display:flex;gap:12px;align-items:flex-start">
+                      <div style="{{ c.tile }}"><div style="{{ c.glyph }}"></div></div>
+                      <div style="flex:1;min-width:0">
+                        <div style="font-size:16px;font-weight:500">{{ c.name }}</div>
+                        <div style="font-size:13px;color:var(--sub,#5F574E);margin-top:2px;line-height:1.45">{{ c.sub }}</div>
+                      </div>
+                      <div style="{{ c.domStyle }}">{{ c.dom }}</div>
+                    </div>
+                    <div style="display:flex;border-top:.5px solid var(--line,#EDE9E3)">
+                      <div style="flex:1;padding:10px 12px;border-right:.5px solid var(--line,#EDE9E3)">
+                        <div style="font-family:'DM Mono',monospace;font-size:15px">{{ c.use }}</div>
+                        <div style="font-size:11px;color:var(--faint,#6B6259);margin-top:2px">{{ t.usage30 }}</div>
+                      </div>
+                      <div style="flex:1;padding:10px 12px;border-right:.5px solid var(--line,#EDE9E3)">
+                        <div style="font-family:'DM Mono',monospace;font-size:15px">{{ c.score }}</div>
+                        <div style="font-size:11px;color:var(--faint,#6B6259);margin-top:2px">{{ t.avgScore }}</div>
+                      </div>
+                      <div style="flex:1;padding:10px 12px">
+                        <div style="{{ c.flagStyle }}">{{ c.flag }}</div>
+                        <div style="font-size:11px;color:var(--faint,#6B6259);margin-top:4px">{{ t.tolerance }}</div>
+                      </div>
+                    </div>
+                    <div style="display:flex;gap:7px;padding:11px 12px 13px;border-top:.5px solid var(--line,#EDE9E3)">
+                      <button onClick="{{ c.keep }}" style="{{ c.keepStyle }}">{{ t.keep }}</button>
+                      <button onClick="{{ c.revise }}" style="{{ c.reviseStyle }}">{{ t.revise }}</button>
+                      <button onClick="{{ c.retire }}" style="{{ c.retireStyle }}">{{ t.retire }}</button>
+                    </div>
+                    <sc-if value="{{ c.hasNote }}" hint-placeholder-val="{{ false }}">
+                      <div style="padding:0 14px 14px"><div style="font-size:13.5px;line-height:1.55;color:var(--sub,#5F574E);background:var(--soft,#FAF8F4);border-left:3px solid #8FD0C2;border-radius:0 8px 8px 0;padding:10px 12px">{{ c.note }}</div></div>
+                    </sc-if>
+                  </div>
+                </sc-for>
+              </div>
+
+              <div style="margin-top:16px;background:var(--accSoft,#E8F5F2);border-radius:16px;padding:16px 18px">
+                <div style="font-size:11px;font-weight:500;letter-spacing:.7px;text-transform:uppercase;color:var(--acc,#0E5550);margin-bottom:7px">{{ t.coveredTitle }}</div>
+                <div style="font-size:14.5px;line-height:1.55;color:var(--accInk,#052C29)">{{ t.coveredBody }}</div>
+              </div>
+            </div>
+            </sc-if>
+
+            <sc-if value="{{ libIsMotor }}" hint-placeholder-val="{{ true }}">
+            <div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+                <sc-for list="{{ libItems }}" as="it" hint-placeholder-count="6">
+                  <button onClick="{{ it.open }}" style="padding:0;text-align:left;background:var(--surf,#FEFCF9);border:.5px solid var(--line,#EDE9E3);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;font-family:'DM Sans',sans-serif;color:var(--ink,#1C1814)">
+                    <div style="{{ it.thumb }}">
+                      <div style="font-family:'DM Mono',monospace;font-size:9.5px;color:#4A443C;background:rgba(255,255,255,.88);border-radius:20px;padding:3px 8px">{{ it.phLabel }}</div>
+                      <div style="{{ it.playStyle }}"></div>
+                    </div>
+                    <div style="padding:11px 12px 13px;display:flex;flex-direction:column;gap:5px">
+                      <div style="font-size:14px;font-weight:500;line-height:1.3">{{ it.name }}</div>
+                      <div style="font-size:11.5px;color:var(--sub,#5F574E);font-family:'DM Mono',monospace">{{ it.meta }}</div>
+                      <div style="{{ it.diffStyle }}">{{ it.diff }}</div>
+                    </div>
+                  </button>
+                </sc-for>
+              </div>
+              <sc-if value="{{ libEmpty }}" hint-placeholder-val="{{ false }}">
+                <div style="padding:34px 10px;text-align:center;font-size:14.5px;color:var(--sub,#5F574E)">{{ t.noResults }}</div>
+              </sc-if>
+            </div>
+            </sc-if>
+          </div>
+        </div>
+        </sc-if>
+
+        <!-- LIBRARY · EXERCISE DETAIL -->
+        <sc-if value="{{ isLibDetail }}" hint-placeholder-val="{{ false }}">
+        <div style="flex:1;overflow:auto;display:flex;flex-direction:column">
+          <div style="{{ detThumb }}">
+            <button onClick="{{ backToLib }}" aria-label="{{ t.aBack }}" style="position:absolute;top:58px;left:18px;width:44px;height:44px;border-radius:50%;border:none;background:rgba(254,252,249,.92);display:flex;align-items:center;justify-content:center">
+              <svg width="11" height="18" viewBox="0 0 11 18" fill="none"><path d="M9 2L2 9l7 7" stroke="#3D3730" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            </button>
+            <div style="position:absolute;bottom:14px;left:18px;display:flex;gap:7px;align-items:center">
+              <div style="width:38px;height:38px;border-radius:50%;background:rgba(14,85,80,.92);display:flex;align-items:center;justify-content:center">
+                <svg width="11" height="13" viewBox="0 0 11 13"><path d="M1.5 1l8 5.5-8 5.5V1z" fill="#fff"></path></svg>
+              </div>
+              <div style="font-family:'DM Mono',monospace;font-size:10.5px;color:#4A443C;background:rgba(255,255,255,.9);border-radius:20px;padding:5px 10px">{{ det.phLabel }}</div>
+            </div>
+          </div>
+          <div style="padding:18px 20px 24px;display:flex;flex-direction:column;gap:14px">
+            <div>
+              <div style="font-family:'Fraunces',Georgia,serif;font-size:26px;font-weight:300;line-height:1.15;letter-spacing:-.4px">{{ det.name }}</div>
+              <div style="font-size:14px;color:var(--sub,#5F574E);margin-top:5px">{{ det.area }}</div>
+            </div>
+            <div style="display:flex;background:var(--surf,#FEFCF9);border:.5px solid var(--line,#EDE9E3);border-radius:14px;overflow:hidden">
+              <div style="flex:1;padding:12px 10px;text-align:center;border-right:.5px solid var(--line,#EDE9E3)">
+                <div style="font-family:'DM Mono',monospace;font-size:15px">{{ det.dur }}</div>
+                <div style="font-size:10.5px;color:var(--faint,#6B6259);margin-top:3px;text-transform:uppercase;letter-spacing:.4px">{{ t.duration }}</div>
+              </div>
+              <div style="flex:1;padding:12px 10px;text-align:center;border-right:.5px solid var(--line,#EDE9E3)">
+                <div style="font-family:'DM Mono',monospace;font-size:15px">{{ det.dose }}</div>
+                <div style="font-size:10.5px;color:var(--faint,#6B6259);margin-top:3px;text-transform:uppercase;letter-spacing:.4px">{{ t.dose }}</div>
+              </div>
+              <div style="flex:1;padding:12px 10px;text-align:center">
+                <div style="font-size:14px;font-weight:500">{{ det.diff }}</div>
+                <div style="font-size:10.5px;color:var(--faint,#6B6259);margin-top:3px;text-transform:uppercase;letter-spacing:.4px">{{ t.difficulty }}</div>
+              </div>
+            </div>
+            <div style="font-size:15px;line-height:1.6;color:var(--sub,#5F574E);background:var(--soft,#FAF8F4);border-left:3px solid #8FD0C2;border-radius:0 10px 10px 0;padding:12px 14px">{{ det.why }}</div>
+            <sc-if value="{{ isProRole }}" hint-placeholder-val="{{ true }}">
+            <div>
+              <div style="font-size:11px;font-weight:500;letter-spacing:.7px;text-transform:uppercase;color:var(--faint,#6B6259);margin-bottom:9px">{{ t.segments }}</div>
+              <div style="display:flex;flex-wrap:wrap;gap:7px">
+                <sc-for list="{{ det.tags }}" as="g" hint-placeholder-count="4">
+                  <div style="{{ g.style }}">{{ g.label }}</div>
+                </sc-for>
+              </div>
+            </div>
+            </sc-if>
+            <div>
+              <div style="font-size:11px;font-weight:500;letter-spacing:.7px;text-transform:uppercase;color:var(--faint,#6B6259);margin-bottom:9px">{{ t.howTo }}</div>
+              <div style="display:flex;flex-direction:column;gap:9px">
+                <sc-for list="{{ det.steps }}" as="s" hint-placeholder-count="3">
+                  <div style="display:flex;gap:12px;align-items:flex-start;background:var(--surf,#FEFCF9);border:.5px solid var(--line,#EDE9E3);border-radius:14px;padding:13px 14px">
+                    <div style="width:26px;height:26px;border-radius:50%;background:var(--accSoft,#E8F5F2);color:var(--acc,#0E5550);display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:12.5px;flex-shrink:0">{{ s.n }}</div>
+                    <div style="font-size:15px;line-height:1.5">{{ s.text }}</div>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+            <sc-if value="{{ isProRole }}" hint-placeholder-val="{{ true }}">
+              <button onClick="{{ addToPlan }}" style="{{ addBtnStyle }}">{{ addLabel }}</button>
+            </sc-if>
+            <button onClick="{{ backToLib }}" style="{{ detBackStyle }}">{{ detBackLabel }}</button>
+          </div>
+        </div>
+        </sc-if>
+
+      </div>
+
+      <!-- TAB BAR -->
+      <sc-if value="{{ showTabs }}" hint-placeholder-val="{{ true }}">
+      <div style="flex-shrink:0;background:var(--surf,#FEFCF9);border-top:.5px solid var(--line,#EDE9E3);padding:9px 8px 30px;display:flex">
+        <sc-for list="{{ tabs }}" as="tb" hint-placeholder-count="4">
+          <button onClick="{{ tb.go }}" style="{{ tb.style }}">
+            <sc-if value="{{ tb.isToday }}" hint-placeholder-val="{{ true }}">
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="8.4" stroke="currentColor" stroke-width="2"></circle><circle cx="11" cy="11" r="3" fill="currentColor"></circle></svg>
+            </sc-if>
+            <sc-if value="{{ tb.isPlan }}" hint-placeholder-val="{{ false }}">
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M3 5.5h16M3 11h16M3 16.5h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
+            </sc-if>
+            <sc-if value="{{ tb.isProgress }}" hint-placeholder-val="{{ false }}">
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="3" y="13" width="4" height="6" rx="1.4" fill="currentColor"></rect><rect x="9" y="8.5" width="4" height="10.5" rx="1.4" fill="currentColor"></rect><rect x="15" y="3.5" width="4" height="15.5" rx="1.4" fill="currentColor"></rect></svg>
+            </sc-if>
+            <sc-if value="{{ tb.isMsg }}" hint-placeholder-val="{{ false }}">
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M4 4.5h14a1.5 1.5 0 011.5 1.5v8a1.5 1.5 0 01-1.5 1.5H9l-4.5 3.5V6A1.5 1.5 0 014 4.5z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path></svg>
+            </sc-if>
+            <sc-if value="{{ tb.isLib }}" hint-placeholder-val="{{ false }}">
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="3" y="3" width="7" height="7" rx="2" stroke="currentColor" stroke-width="2"></rect><rect x="12" y="3" width="7" height="7" rx="2" stroke="currentColor" stroke-width="2"></rect><rect x="3" y="12" width="7" height="7" rx="2" stroke="currentColor" stroke-width="2"></rect><rect x="12" y="12" width="7" height="7" rx="2" fill="currentColor"></rect></svg>
+            </sc-if>
+            <sc-if value="{{ tb.isPeople }}" hint-placeholder-val="{{ false }}">
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="8.5" cy="7.5" r="3.4" stroke="currentColor" stroke-width="2"></circle><path d="M2.5 18.5c0-3.3 2.7-5.4 6-5.4s6 2.1 6 5.4" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path><circle cx="16.5" cy="8.5" r="2.4" stroke="currentColor" stroke-width="1.7"></circle></svg>
+            </sc-if>
+            <div style="font-size:11.5px;font-weight:500">{{ tb.label }}</div>
+          </button>
+        </sc-for>
+      </div>
+      </sc-if>
+    </div>
+  </x-import>
+
+  <div style="max-width:520px;text-align:center;font-size:12.5px;line-height:1.6;color:var(--sub,#5F574E)">{{ t.footer }}</div>
+  <div style="max-width:520px;text-align:center;font-size:12px;line-height:1.6;color:#8A3315;background:#FAECE7;border-radius:10px;padding:10px 14px">{{ t.disclaimer }}</div>
+  <a href="Accessibility Guide.dc.html" style="font-size:13.5px;font-weight:500;color:#0E5550">{{ t.a11yLink }}</a>
+  <template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#0E5550"></rect><text x="50" y="63" text-anchor="middle" font-family="Georgia,serif" font-size="40" fill="#F5F2EC">R</text></svg></template>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;lang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;it&quot;,&quot;en&quot;],&quot;default&quot;:&quot;it&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contenuto&quot;},&quot;playerStyle&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;focus&quot;,&quot;coach&quot;,&quot;ritmo&quot;],&quot;default&quot;:&quot;coach&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Varianti&quot;},&quot;adherence&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;streak&quot;,&quot;orto&quot;,&quot;nessuno&quot;],&quot;default&quot;:&quot;streak&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Varianti&quot;},&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;calmo&quot;,&quot;contrasto&quot;,&quot;notte&quot;],&quot;default&quot;:&quot;calmo&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Varianti&quot;},&quot;textSize&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;normale&quot;,&quot;grande&quot;],&quot;default&quot;:&quot;normale&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Accessibilità&quot;}}">
+class Component extends DCLogic {
+  state = {
+    role: 'patient', lang: null, screen: 'intro', ob: 0, rem: 1,
+    ciStep: 0, ci: [0, 0, 0],
+    exIdx: 0, reps: 0, sets: 0, sec: 0, running: false,
+    cogTrial: 1, cogPhase: 'show', cogTarget: [], cogPicks: [], cogScore: 0,
+    msgs: null, sel: 0, adapted: false, thread: 'pro',
+    libMode: 'anat', libQ: '', libFilter: null, libSel: null, added: {}, cogRev: {}, proposed: false
+  };
+
+  S = {
+    it: {
+      subhead: 'prototipo · riabilitazione neurologica', rolePat: 'Paziente', rolePro: 'Terapista',
+      obTitle: 'Bentornato, Marco', obBody: 'Il tuo percorso è già pronto. Inserisci il codice che ti ha dato il tuo terapista.',
+      obCode: 'Codice di accesso', obTeamTitle: 'Chi ti segue', obTherapistRole: 'Fisioterapista · Neuroriabilitazione',
+      obPlan: 'Il tuo piano', obPlan1: 'Esercizi di movimento', obPlan2: 'Esercizi di memoria', obPlan3: 'Come ti senti',
+      obWhenTitle: 'Quando ti ricordo?', obWhenBody: 'Una sola notifica al giorno, all’ora che preferisci.',
+      morning: 'mattina', afternoon: 'pomeriggio', evening: 'sera', skip: 'Salta introduzione',
+      next: 'Avanti', begin: 'Inizia',
+      date: 'MER 16 SETTEMBRE', greet: 'Buongiorno, Marco',
+      streakLbl: 'giorni di fila', gardenTitle: 'La tua settimana', gardenSub: 'Ogni sessione fa crescere una colonna',
+      todaySession: 'Sessione di oggi', todayMeta: '4 blocchi · 14 minuti', shortEnough: 'Breve',
+      start: 'Inizia sessione', msgPreview: 'Ho visto i tuoi progressi sulla spalla…',
+      ph: 'illustrazione esercizio', tapToCount: 'Tocca per contare una ripetizione',
+      sets: 'Serie', followRhythm: 'Muovi il braccio seguendo il punto. Non affrettare.',
+      countOne: 'Conta 1', pause: 'Pausa', go: 'Avvia',
+      tapOne: 'Tocca una risposta', ciQ1: 'Quanta energia hai?', ciQ2: 'Hai dolore?', ciQ3: 'Come ti senti?',
+      ciLow1: 'poca', ciHigh1: 'molta', ciLow2: 'nessuno', ciHigh2: 'molto', ciLow3: 'giù', ciHigh3: 'bene',
+      visualMemory: 'Memoria visiva', cogShow: 'Guarda bene le caselle', cogInput: 'Tocca le caselle che hai visto',
+      cogRight: 'Esatto', cogWrong: 'Quasi. Ecco quelle giuste.', correctSoFar: 'Prove corrette',
+      cogNext: 'Prova successiva', cogEnd: 'Concludi', cogReady: 'Sono pronto',
+      doneTitle: 'Sessione completata', doneSubA: 'Ottimo lavoro. I dati sono già arrivati a Dr.ssa Riva.',
+      minutes: 'minuti', reps: 'ripetizioni', memory: 'memoria',
+      rewardStreak: '13 giorni di fila', rewardStreakSub: 'Il tuo record è 15', rewardGarden: 'Colonna di oggi cresciuta',
+      rewardGardenSub: '6 giorni su 7 questa settimana', seeProgress: 'Vedi i progressi', backHome: 'Torna alla home',
+      progressTitle: 'I tuoi progressi', progressSub: 'Ultime 4 settimane', adherence: 'Aderenza',
+      noteFrom: 'Nota di Dr.ssa Riva', therapistNote: 'Ampiezza della spalla in netto miglioramento. Questa settimana aggiungiamo una serie.',
+      planTitle: 'Il tuo piano', planSub: 'Prescritto da Dr.ssa Riva · aggiornato 3 giorni fa',
+      planMotor: 'Movimento', planCog: 'Cognitivo',
+      planFooter: 'Il piano si adatta alle tue risposte. Se un esercizio fa male, segnalalo: viene sostituito.',
+      quickReply: 'Risposte rapide', qr1: 'Fatto tutto', qr2: 'Un po’ di dolore', qr3: 'Non ci riesco',
+      proTitle: 'I tuoi pazienti', proSub: 'Mercoledì 16 settembre', needAttention: 'da rivedere', sessionsToday: 'sessioni oggi',
+      sessions: 'sessioni', week: 'settimana', alert: 'Segnalazione', lastSession: 'Ultima sessione',
+      message: 'Messaggio', adapt: 'Adatta piano', adapted: 'Piano aggiornato',
+      libTitle: 'Libreria', libSearch: 'Cerca esercizio, segmento, dominio…',
+      libAnat: 'Anatomico', libFunc: 'Funzionale', libCog: 'Cognitivo',
+      noResults: 'Nessun esercizio con questi filtri.', duration: 'Durata', dose: 'Dose', difficulty: 'Difficoltà',
+      segments: 'Segmenti e domini', howTo: 'Come si esegue', backToLib: 'Torna alla libreria',
+      addPlan: 'Aggiungi al piano di Marco', added: 'Aggiunto al piano ✓',
+      coverage: 'Copertura dei domini', cogReviewTitle: 'Revisione libreria cognitiva',
+      cogReviewBody: 'Sei esercizi, sei domini su sei. Due sono nuove proposte da validare. Rivedi ciascuno: mantieni, adatta la difficoltà o ritiralo.',
+      howShort: 'Come si fa?', back: 'Indietro', aBack: 'Indietro', aClose: 'Chiudi', cell: 'Casella',
+      coveredTitle: 'Tutti i domini coperti', coveredBody: 'Eloquio e funzioni esecutive sono ora coperti da due esercizi proposti. Prima dell’uso servono validazione clinica e un test con 5–8 pazienti.',
+      a11yLink: 'Guida all’accessibilità →',
+      usage30: 'sessioni · 30 gg', avgScore: 'punteggio medio', tolerance: 'tolleranza',
+      keep: 'Mantieni', revise: 'Adatta', retire: 'Ritira',
+      gapsTitle: 'Domini scoperti', gapsBody: 'Nessun esercizio copre eloquio/disartria né funzioni esecutive — due aree chiave dopo trauma cranico e neurochirurgia.',
+      propose: 'Proponi due esercizi', proposed: 'Richiesta inviata ✓',
+      disclaimer: 'Prototipo di design, non un dispositivo medico. Esercizi e dati sono esempi non validati clinicamente: non usare per la cura dei pazienti. Licenza MIT.',
+      footer: 'Prototipo interattivo. Cambia ruolo e lingua in alto; nei Tweaks puoi provare tre versioni del player, tre meccaniche di aderenza e tre trattamenti visivi.'
+    },
+    en: {
+      subhead: 'prototype · neurological rehabilitation', rolePat: 'Patient', rolePro: 'Therapist',
+      obTitle: 'Welcome back, Marco', obBody: 'Your programme is ready. Enter the code your therapist gave you.',
+      obCode: 'Access code', obTeamTitle: 'Your care team', obTherapistRole: 'Physiotherapist · Neurorehabilitation',
+      obPlan: 'Your plan', obPlan1: 'Movement exercises', obPlan2: 'Memory exercises', obPlan3: 'How you feel',
+      obWhenTitle: 'When should I remind you?', obWhenBody: 'One notification a day, at the time you prefer.',
+      morning: 'morning', afternoon: 'afternoon', evening: 'evening', skip: 'Skip intro',
+      next: 'Next', begin: 'Start',
+      date: 'WED 16 SEPTEMBER', greet: 'Good morning, Marco',
+      streakLbl: 'days in a row', gardenTitle: 'Your week', gardenSub: 'Each session grows a column',
+      todaySession: 'Today’s session', todayMeta: '4 blocks · 14 minutes', shortEnough: 'Short',
+      start: 'Start session', msgPreview: 'I saw your shoulder progress…',
+      ph: 'exercise illustration', tapToCount: 'Tap to count one repetition',
+      sets: 'Sets', followRhythm: 'Move your arm with the dot. Take your time.',
+      countOne: 'Count 1', pause: 'Pause', go: 'Start',
+      tapOne: 'Tap one answer', ciQ1: 'How much energy?', ciQ2: 'Any pain?', ciQ3: 'How do you feel?',
+      ciLow1: 'low', ciHigh1: 'high', ciLow2: 'none', ciHigh2: 'a lot', ciLow3: 'low', ciHigh3: 'good',
+      visualMemory: 'Visual memory', cogShow: 'Look at the squares', cogInput: 'Tap the squares you saw',
+      cogRight: 'Correct', cogWrong: 'Close. These were the right ones.', correctSoFar: 'Correct trials',
+      cogNext: 'Next trial', cogEnd: 'Finish', cogReady: 'I’m ready',
+      doneTitle: 'Session complete', doneSubA: 'Well done. Your data has reached Dr. Riva.',
+      minutes: 'minutes', reps: 'repetitions', memory: 'memory',
+      rewardStreak: '13 days in a row', rewardStreakSub: 'Your record is 15', rewardGarden: 'Today’s column grew',
+      rewardGardenSub: '6 of 7 days this week', seeProgress: 'See progress', backHome: 'Back home',
+      progressTitle: 'Your progress', progressSub: 'Last 4 weeks', adherence: 'Adherence',
+      noteFrom: 'Note from Dr. Riva', therapistNote: 'Shoulder range clearly improving. We’ll add one set this week.',
+      planTitle: 'Your plan', planSub: 'Prescribed by Dr. Riva · updated 3 days ago',
+      planMotor: 'Movement', planCog: 'Cognitive',
+      planFooter: 'The plan adapts to your answers. If an exercise hurts, flag it and it gets swapped.',
+      quickReply: 'Quick replies', qr1: 'All done', qr2: 'A bit of pain', qr3: 'I can’t manage',
+      proTitle: 'Your patients', proSub: 'Wednesday 16 September', needAttention: 'to review', sessionsToday: 'sessions today',
+      sessions: 'sessions', week: 'this week', alert: 'Flag', lastSession: 'Last session',
+      message: 'Message', adapt: 'Adapt plan', adapted: 'Plan updated',
+      libTitle: 'Library', libSearch: 'Search exercise, segment, domain…',
+      libAnat: 'Anatomical', libFunc: 'Functional', libCog: 'Cognitive',
+      noResults: 'No exercise matches these filters.', duration: 'Duration', dose: 'Dose', difficulty: 'Difficulty',
+      segments: 'Segments & domains', howTo: 'How to perform', backToLib: 'Back to library',
+      addPlan: 'Add to Marco’s plan', added: 'Added to plan ✓',
+      coverage: 'Domain coverage', cogReviewTitle: 'Cognitive library review',
+      cogReviewBody: 'Six exercises covering all six domains. Two are new proposals awaiting validation. Review each one: keep, adapt difficulty, or retire it.',
+      howShort: 'How to?', back: 'Back', aBack: 'Back', aClose: 'Close', cell: 'Square',
+      coveredTitle: 'All domains covered', coveredBody: 'Speech and executive function are now covered by two proposed exercises. They need clinical validation and a 5–8 patient test before use.',
+      a11yLink: 'Accessibility guide →',
+      usage30: 'sessions · 30 d', avgScore: 'average score', tolerance: 'tolerance',
+      keep: 'Keep', revise: 'Adapt', retire: 'Retire',
+      gapsTitle: 'Uncovered domains', gapsBody: 'No exercise covers speech/dysarthria or executive function — two key areas after brain injury and neurosurgery.',
+      propose: 'Propose two exercises', proposed: 'Request sent ✓',
+      disclaimer: 'Design prototype, not a medical device. Exercises and data are clinically unvalidated samples — do not use for patient care. MIT licence.',
+      footer: 'Interactive prototype. Switch role and language above; Tweaks offer three player versions, three adherence mechanics and three visual treatments.'
+    }
+  };
+
+  EX = {
+    it: [
+      { name: 'Elevazione della spalla', why: 'Recupera l’ampiezza del movimento dopo l’intervento.', cue: 'Alza il braccio lentamente. Fermati all’altezza della spalla.' },
+      { name: 'Presa e rilascio', why: 'Allena la forza della mano per le attività quotidiane.', cue: 'Stringi la pallina, conta due secondi, rilascia.' }
+    ],
+    en: [
+      { name: 'Shoulder elevation', why: 'Restores range of motion after surgery.', cue: 'Raise your arm slowly. Stop at shoulder height.' },
+      { name: 'Grip and release', why: 'Builds hand strength for daily tasks.', cue: 'Squeeze the ball, count to two, release.' }
+    ]
+  };
+
+  MOT = [
+    { id: 'm1', segs: ['C5–C6'], fam: 'upper', dur: '8 min', dose: '3 × 10', tint: '#E8F5F2',
+      it: { name: 'Elevazione della spalla', area: 'Arto superiore · C5–C6', diff: 'Moderata', why: 'Recupera l’ampiezza del movimento della spalla dopo craniotomia o ictus, lavorando sotto la soglia del dolore.', steps: ['Siediti con la schiena appoggiata, braccia lungo i fianchi.', 'Alza il braccio lentamente fino all’altezza della spalla.', 'Tieni due secondi, poi scendi contando tre secondi.'] },
+      en: { name: 'Shoulder elevation', area: 'Upper limb · C5–C6', diff: 'Moderate', why: 'Restores shoulder range after craniotomy or stroke, working below the pain threshold.', steps: ['Sit with your back supported, arms at your sides.', 'Raise your arm slowly to shoulder height.', 'Hold for two seconds, lower over three seconds.'] } },
+    { id: 'm2', segs: ['C5–C6'], fam: 'upper', dur: '10 min', dose: '3 × 12', tint: '#E1F5EE',
+      it: { name: 'Rotazione esterna della spalla', area: 'Cuffia dei rotatori · C5–C6', diff: 'Moderata', why: 'Attiva la cuffia dei rotatori per stabilizzare la spalla e ridurre le compensazioni del tronco.', steps: ['Gomito al fianco, piegato a 90°, elastico leggero in mano.', 'Ruota l’avambraccio verso l’esterno senza staccare il gomito.', 'Torna lentamente al centro.'] },
+      en: { name: 'Shoulder external rotation', area: 'Rotator cuff · C5–C6', diff: 'Moderate', why: 'Activates the rotator cuff to stabilise the shoulder and reduce trunk compensation.', steps: ['Elbow at your side, bent 90°, light band in hand.', 'Rotate the forearm outwards, keeping the elbow tucked.', 'Return slowly to the centre.'] } },
+    { id: 'm3', segs: ['C3–C4', 'C5–C6'], fam: 'posture', dur: '6 min', dose: '2 × 8', tint: '#EDE9E3',
+      it: { name: 'Retrazione del mento', area: 'Decompressione cervicale · C3–C6', diff: 'Facile', why: 'Allevia la pressione sulle radici cervicali e migliora il controllo del capo in posizione seduta.', steps: ['Siediti eretto, sguardo all’orizzonte.', 'Porta il mento indietro, come per fare un doppio mento.', 'Tieni cinque secondi e rilascia.'] },
+      en: { name: 'Chin retraction', area: 'Cervical decompression · C3–C6', diff: 'Easy', why: 'Relieves pressure on cervical roots and improves head control in sitting.', steps: ['Sit upright, eyes on the horizon.', 'Draw your chin backwards, making a double chin.', 'Hold five seconds and release.'] } },
+    { id: 'm4', segs: ['C7–C8'], fam: 'hand', dur: '5 min', dose: '3 × 12', tint: '#FAEEDA',
+      it: { name: 'Presa e rilascio', area: 'Mano · C7–C8', diff: 'Facile', why: 'Allena la forza di presa necessaria per le attività quotidiane: posate, maniglie, bottiglia.', steps: ['Appoggia l’avambraccio sul tavolo, pallina in mano.', 'Stringi contando due secondi.', 'Rilascia completamente e apri le dita.'] },
+      en: { name: 'Grip and release', area: 'Hand · C7–C8', diff: 'Easy', why: 'Builds the grip strength daily tasks need: cutlery, handles, a bottle.', steps: ['Rest your forearm on the table, ball in hand.', 'Squeeze for a count of two.', 'Release fully and spread your fingers.'] } },
+    { id: 'm5', segs: ['C6–C7', 'C7–C8'], fam: 'hand', dur: '6 min', dose: '2 × 10', tint: '#E8F5F2',
+      it: { name: 'Estensione del polso', area: 'Miotomo C7 · avambraccio', diff: 'Facile', why: 'Recupera l’estensione del polso, prerequisito per una presa funzionale.', steps: ['Avambraccio sul tavolo, mano fuori dal bordo, palmo in basso.', 'Solleva il dorso della mano il più possibile.', 'Scendi lentamente sotto controllo.'] },
+      en: { name: 'Wrist extension', area: 'C7 myotome · forearm', diff: 'Easy', why: 'Restores wrist extension, a prerequisite for functional grip.', steps: ['Forearm on the table, hand past the edge, palm down.', 'Lift the back of your hand as far as you can.', 'Lower slowly under control.'] } },
+    { id: 'm6', segs: ['L4–L5'], fam: 'lower', dur: '8 min', dose: '3 × 10', tint: '#E1F5EE',
+      it: { name: 'Dorsiflessione della caviglia', area: 'Arto inferiore · L4–L5', diff: 'Moderata', why: 'Rinforza il muscolo che solleva il piede: riduce il rischio di inciampo durante il cammino.', steps: ['Seduto, piede appoggiato a terra.', 'Solleva la punta del piede tenendo il tallone a terra.', 'Tieni due secondi e appoggia.'] },
+      en: { name: 'Ankle dorsiflexion', area: 'Lower limb · L4–L5', diff: 'Moderate', why: 'Strengthens the muscle that lifts the foot, cutting the risk of tripping while walking.', steps: ['Seated, foot flat on the floor.', 'Lift your toes keeping the heel down.', 'Hold two seconds and lower.'] } },
+    { id: 'm7', segs: ['L4–L5', 'S1–S2'], fam: 'lower', dur: '9 min', dose: '3 × 8', tint: '#EDE9E3',
+      it: { name: 'Ponte in supino', area: 'Glutei e core · L5–S1', diff: 'Moderata', why: 'Attiva glutei e core per i passaggi posturali: alzarsi dal letto, sedersi, girarsi.', steps: ['Supino, ginocchia flesse, piedi a terra.', 'Solleva il bacino fino ad allineare tronco e cosce.', 'Scendi vertebra per vertebra.'] },
+      en: { name: 'Supine bridge', area: 'Glutes and core · L5–S1', diff: 'Moderate', why: 'Activates glutes and core for postural transfers: getting out of bed, sitting, turning.', steps: ['Lie on your back, knees bent, feet down.', 'Lift your pelvis until trunk and thighs align.', 'Lower one vertebra at a time.'] } },
+    { id: 'm8', segs: ['L4–L5', 'S1–S2'], fam: 'balance', dur: '7 min', dose: '4 × 20 s', tint: '#FAECE7',
+      it: { name: 'Appoggio monopodalico', area: 'Equilibrio · L4–S1', diff: 'Avanzata', why: 'Allena l’equilibrio statico in sicurezza. Da eseguire sempre accanto a un appoggio stabile.', steps: ['In piedi accanto al tavolo, una mano appoggiata.', 'Solleva un piede di pochi centimetri.', 'Tieni venti secondi, poi cambia lato.'] },
+      en: { name: 'Single-leg stance', area: 'Balance · L4–S1', diff: 'Advanced', why: 'Trains static balance safely. Always perform next to a stable support.', steps: ['Stand beside a table, one hand resting on it.', 'Lift one foot a few centimetres.', 'Hold twenty seconds, then switch sides.'] } },
+    { id: 'm9', segs: ['L4–L5'], fam: 'gait', dur: '10 min', dose: '2 × 3 min', tint: '#E8F5F2',
+      it: { name: 'Cammino a ritmo guidato', area: 'Cammino · cadenza', diff: 'Adattiva', why: 'Usa un ritmo esterno per regolarizzare la cadenza e allungare il passo del lato colpito.', steps: ['Attiva il ritmo nell’app e ascolta il battito.', 'Cammina appoggiando un passo per battito.', 'Fermati se il respiro diventa affannoso.'] },
+      en: { name: 'Rhythm-cued walking', area: 'Gait · cadence', diff: 'Adaptive', why: 'Uses an external beat to regularise cadence and lengthen the affected-side step.', steps: ['Start the rhythm in the app and listen to the beat.', 'Walk one step per beat.', 'Stop if your breathing becomes laboured.'] } }
+  ];
+
+  COG = [
+    { id: 'stroop', dom: 'att', use: '18', score: '74%', flag: 'ok', tint: '#FAECE7', shape: 'circle',
+      it: { name: 'Stroop', sub: 'Nomina il colore dell’inchiostro, non la parola.', dom: 'Attenzione', flag: 'buona', note: 'Ridurre a 12 prove: dopo la decima il tempo di risposta raddoppia.' },
+      en: { name: 'Stroop', sub: 'Name the ink colour, not the word.', dom: 'Attention', flag: 'good', note: 'Cut to 12 trials: response time doubles after the tenth.' } },
+    { id: 'digits', dom: 'mem', use: '18', score: '61%', flag: 'ok', tint: '#EEEDFE', shape: 'square',
+      it: { name: 'Span di cifre', sub: 'Ripeti le sequenze avanti e indietro.', dom: 'Memoria', flag: 'buona', note: 'Tenere solo la versione avanti nelle prime quattro settimane.' },
+      en: { name: 'Digit span', sub: 'Repeat sequences forwards and backwards.', dom: 'Memory', flag: 'good', note: 'Keep forward-only for the first four weeks.' } },
+    { id: 'fluency', dom: 'lang', use: '11', score: '48%', flag: 'bad', tint: '#E8F5F2', shape: 'bubble',
+      it: { name: 'Fluenza verbale', sub: 'Nomina più oggetti di una categoria.', dom: 'Linguaggio', flag: 'scarsa', note: 'Non adatta in afasia: sostituire con scelta fra immagini e input vocale opzionale.' },
+      en: { name: 'Verbal fluency', sub: 'Name as many items in a category as you can.', dom: 'Language', flag: 'poor', note: 'Unsuitable in aphasia: replace with picture choice and optional voice input.' } },
+    { id: 'pattern', dom: 'vis', use: '18', score: '66%', flag: 'ok', tint: '#FAEEDA', shape: 'diamond',
+      it: { name: 'Memoria visiva (Pattern)', sub: 'Memorizza e riproduci lo schema di caselle.', dom: 'Visuospaziale', flag: 'buona', note: 'Aumentare a 4 caselle dalla terza settimana.' },
+      en: { name: 'Visual memory (Pattern)', sub: 'Memorise and reproduce the grid pattern.', dom: 'Visuospatial', flag: 'good', note: 'Increase to 4 cells from week three.' } },
+    { id: 'syll', dom: 'speech', use: '—', score: '—', flag: 'new', tint: '#E1F5EE', shape: 'ring',
+      it: { name: 'Ripetizione di sillabe', sub: 'Ascolta “pa-ta-ka” e ripeti a ritmo. Voce o tocco.', dom: 'Eloquio', flag: 'nuovo', note: 'Proposta: 3 min, microfono facoltativo. In afasia severa si risponde toccando a ritmo: nessuna lettura richiesta.' },
+      en: { name: 'Syllable repetition', sub: 'Hear “pa-ta-ka” and repeat in rhythm. Voice or tap.', dom: 'Speech', flag: 'new', note: 'Proposal: 3 min, microphone optional. With severe aphasia the patient taps in rhythm instead — no reading needed.' } },
+    { id: 'trail', dom: 'exec', use: '—', score: '—', flag: 'new', tint: '#E8F5F2', shape: 'bars',
+      it: { name: 'Sequenze alternate', sub: 'Collega in ordine numeri e immagini alternati.', dom: 'Esecutive', flag: 'nuovo', note: 'Proposta: versione touch del Trail Making B, massimo 8 punti, immagini al posto delle lettere, nessun limite di tempo.' },
+      en: { name: 'Alternating sequences', sub: 'Connect numbers and pictures in alternating order.', dom: 'Executive', flag: 'new', note: 'Proposal: touch version of Trail Making B, max 8 nodes, pictures instead of letters, no time limit.' } }
+  ];
+
+  componentWillUnmount() { clearInterval(this._t); clearTimeout(this._c); clearTimeout(this._r); }
+
+  L() { return this.state.lang || this.props.lang || 'it'; }
+  T() { return this.S[this.L()]; }
+  adh() { return this.props.adherence || 'streak'; }
+  style() { return this.props.playerStyle || 'coach'; }
+
+  themeVars() {
+    const th = this.props.theme || 'calmo';
+    if (th === 'notte') return { '--bg': '#12100E', '--surf': '#1C1916', '--soft': '#211D19', '--ink': '#F5F2EC', '--sub': '#B4ADA2', '--faint': '#9A9287', '--line': '#2E2A26', '--acc': '#2D9D8A', '--accSoft': '#11302C', '--accInk': '#C4E8DF', '--cogSoft': '#201D33', '--playerBg': '#15120F' };
+    if (th === 'contrasto') return { '--bg': '#FFFFFF', '--surf': '#FFFFFF', '--soft': '#F2F2F2', '--ink': '#000000', '--sub': '#333333', '--faint': '#3D3D3D', '--line': '#BFBFBF', '--acc': '#00423D', '--accSoft': '#DDEDEA', '--accInk': '#00312D', '--cogSoft': '#E6E4F7', '--playerBg': '#FFFFFF' };
+    return { '--bg': '#F5F2EC', '--surf': '#FEFCF9', '--soft': '#FAF8F4', '--ink': '#1C1814', '--sub': '#5F574E', '--faint': '#6B6259', '--line': '#EDE9E3', '--acc': '#0E5550', '--accSoft': '#E8F5F2', '--accInk': '#052C29', '--cogSoft': '#EEEDFE', '--playerBg': '#FAF8F4' };
+  }
+
+  seg(on, w) { return { flex: 1, height: 5, borderRadius: 4, background: on ? '#2D9D8A' : 'var(--line,#EDE9E3)' }; }
+  tile(kind) {
+    const bg = kind === 'cog' ? 'var(--cogSoft,#EEEDFE)' : kind === 'check' ? '#FAEEDA' : 'var(--accSoft,#E8F5F2)';
+    return { width: 42, height: 42, borderRadius: 12, background: bg, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 };
+  }
+  dot(kind) {
+    const c = kind === 'cog' ? '#534AB7' : kind === 'check' ? '#BA7517' : '#0E5550';
+    if (kind === 'motor') return { width: 18, height: 18, borderRadius: '50%', border: '3px solid ' + c };
+    if (kind === 'cog') return { width: 18, height: 18, borderRadius: 4, background: c, opacity: .85 };
+    return { width: 16, height: 16, borderRadius: '50%', background: c };
+  }
+
+  go(screen, extra) { this.setState(Object.assign({ screen }, extra || {})); }
+
+  startTrial() {
+    const pool = [0, 1, 2, 3, 4, 5, 6, 7, 8].sort(() => Math.random() - 0.5);
+    const n = 2 + Math.min(this.state.cogTrial, 2);
+    clearTimeout(this._c);
+    this.setState({ cogPhase: 'show', cogTarget: pool.slice(0, n), cogPicks: [] });
+    this._c = setTimeout(() => this.setState({ cogPhase: 'input' }), 2200);
+  }
+
+  renderVals() {
+    const t = this.T(), lang = this.L(), st = this.state, s = st.screen;
+    const ex = this.EX[lang][Math.min(st.exIdx, 1)];
+    const adh = this.adh(), pst = this.style();
+    const zoom = (this.props.textSize === 'grande') ? 1.12 : 1;
+
+    const patients = [
+      { ini: 'MC', name: 'Marco Conti', dxIt: 'Craniotomia · 6 settimane', dxEn: 'Craniotomy · 6 weeks', adh: '86%', pct: 86, sessions: '24', week: '5/7', alert: false, tagIt: 'in linea', tagEn: 'on track', ok: true },
+      { ini: 'AB', name: 'Anna Bianchi', dxIt: 'Ictus ischemico · 3 mesi', dxEn: 'Ischaemic stroke · 3 months', adh: '41%', pct: 41, sessions: '11', week: '2/7', alert: true, alertIt: 'Dolore 4/5 su “Presa e rilascio” per tre sessioni. Valutare sostituzione.', alertEn: 'Pain 4/5 on “Grip and release” for three sessions. Consider swapping it.', tagIt: 'da rivedere', tagEn: 'review', ok: false },
+      { ini: 'LF', name: 'Luca Ferrari', dxIt: 'Trauma cranico · 8 mesi', dxEn: 'Brain injury · 8 months', adh: '92%', pct: 92, sessions: '58', week: '7/7', alert: false, tagIt: 'in linea', tagEn: 'on track', ok: true },
+      { ini: 'SR', name: 'Sara Rossi', dxIt: 'Ictus emorragico · 5 sett.', dxEn: 'Haemorrhagic stroke · 5 wks', adh: '58%', pct: 58, sessions: '9', week: '3/7', alert: true, alertIt: 'Nessuna sessione da 2 giorni. Ultimo check-in: energia 1/5.', alertEn: 'No session for 2 days. Last check-in: energy 1/5.', tagIt: 'inattiva', tagEn: 'inactive', ok: false }
+    ];
+    const P = patients[st.sel];
+
+    const defaultMsgs = lang === 'it'
+      ? [{ f: 'pro', text: 'Ciao Marco, ho visto i tuoi progressi sulla spalla: ottimi.' }, { f: 'pro', text: 'Questa settimana aggiungiamo una serie all’elevazione. Se senti dolore, fermati e scrivimi.' }, { f: 'pat', text: 'Va bene, grazie.' }]
+      : [{ f: 'pro', text: 'Hi Marco, your shoulder progress looks great.' }, { f: 'pro', text: 'This week we add one set to the elevation. If it hurts, stop and message me.' }, { f: 'pat', text: 'All right, thank you.' }];
+    const msgs = st.msgs || defaultMsgs;
+
+    const bubble = (from) => {
+      const mine = (st.role === 'patient' ? from === 'pat' : from === 'pro');
+      return {
+        wrap: { display: 'flex', justifyContent: mine ? 'flex-end' : 'flex-start' },
+        bubble: {
+          maxWidth: '78%', padding: '12px 15px', borderRadius: mine ? '16px 16px 5px 16px' : '16px 16px 16px 5px',
+          background: mine ? 'var(--acc,#0E5550)' : 'var(--surf,#FEFCF9)',
+          color: mine ? '#fff' : 'var(--ink,#1C1814)',
+          border: mine ? 'none' : '.5px solid var(--line,#EDE9E3)',
+          fontSize: 15, lineHeight: 1.5
+        }
+      };
+    };
+
+    const send = (text) => () => {
+      const cur = (this.state.msgs || defaultMsgs).slice();
+      cur.push({ f: st.role === 'patient' ? 'pat' : 'pro', text });
+      this.setState({ msgs: cur });
+      clearTimeout(this._r);
+      this._r = setTimeout(() => {
+        const c2 = (this.state.msgs || []).slice();
+        c2.push({ f: st.role === 'patient' ? 'pro' : 'pat', text: lang === 'it' ? 'Grazie, ho aggiornato il piano di conseguenza.' : 'Thanks, I have updated the plan accordingly.' });
+        this.setState({ msgs: c2 });
+      }, 1100);
+    };
+
+    const setDots = [0, 1, 2].map(i => ({
+      style: { width: 12, height: 12, borderRadius: '50%', background: i < st.sets ? '#166D64' : 'transparent', border: i === st.sets ? '2px solid #2D9D8A' : '2px solid var(--line,#EDE9E3)' }
+    }));
+
+    const ciQ = [t.ciQ1, t.ciQ2, t.ciQ3][st.ciStep];
+    const ciIconColor = ['#0E5550', '#D85A30', '#BA7517'][st.ciStep];
+    const ciScale = [1, 2, 3, 4, 5].map(v => ({
+      label: String(v),
+      pick: () => { const c = st.ci.slice(); c[st.ciStep] = v; this.setState({ ci: c }); },
+      style: {
+        flex: 1, height: 64, borderRadius: 16, border: st.ci[st.ciStep] === v ? '2px solid #0E5550' : '.5px solid var(--line,#EDE9E3)',
+        background: st.ci[st.ciStep] === v ? 'var(--acc,#0E5550)' : 'var(--surf,#FEFCF9)',
+        color: st.ci[st.ciStep] === v ? '#fff' : 'var(--ink,#1C1814)',
+        fontFamily: "'DM Mono',monospace", fontSize: 20
+      }
+    }));
+
+    const cogCells = [0, 1, 2, 3, 4, 5, 6, 7, 8].map(i => {
+      const inTarget = st.cogTarget.indexOf(i) >= 0, picked = st.cogPicks.indexOf(i) >= 0;
+      let bg = 'var(--soft,#FAF8F4)', bd = '1.5px solid var(--line,#EDE9E3)';
+      if (st.cogPhase === 'show' && inTarget) { bg = '#534AB7'; bd = '1.5px solid #534AB7'; }
+      if (st.cogPhase === 'input' && picked) { bg = '#C9C5F4'; bd = '1.5px solid #534AB7'; }
+      if (st.cogPhase === 'result') {
+        if (inTarget && picked) { bg = '#8FD0C2'; bd = '1.5px solid #1D9E75'; }
+        else if (inTarget) { bg = 'var(--cogSoft,#EEEDFE)'; bd = '1.5px dashed #534AB7'; }
+        else if (picked) { bg = '#F5C4B3'; bd = '1.5px solid #D85A30'; }
+      }
+      return {
+        label: t.cell + ' ' + (i + 1),
+        style: { aspectRatio: '1', borderRadius: 14, background: bg, border: bd, minHeight: 72 },
+        tap: () => {
+          if (st.cogPhase !== 'input') return;
+          const p = st.cogPicks.slice(), k = p.indexOf(i);
+          if (k >= 0) p.splice(k, 1); else if (p.length < st.cogTarget.length) p.push(i);
+          this.setState({ cogPicks: p });
+        }
+      };
+    });
+
+    const cogPrompt = st.cogPhase === 'show' ? t.cogShow : st.cogPhase === 'input' ? t.cogInput
+      : (st.cogPicks.length === st.cogTarget.length && st.cogTarget.every(i => st.cogPicks.indexOf(i) >= 0) ? t.cogRight : t.cogWrong);
+    const cogReady = st.cogPhase === 'input' && st.cogPicks.length === st.cogTarget.length;
+    const cogLast = st.cogTrial >= 3;
+
+    const cogAction = () => {
+      if (st.cogPhase === 'input' && cogReady) {
+        const win = st.cogTarget.every(i => st.cogPicks.indexOf(i) >= 0);
+        this.setState({ cogPhase: 'result', cogScore: st.cogScore + (win ? 1 : 0) });
+      } else if (st.cogPhase === 'result') {
+        if (cogLast) this.go('done');
+        else { this.setState({ cogTrial: st.cogTrial + 1 }); this.startTrial(); }
+      }
+    };
+
+    const tabDefs = st.role === 'patient'
+      ? [{ k: 'home', l: lang === 'it' ? 'Oggi' : 'Today' }, { k: 'plan', l: lang === 'it' ? 'Piano' : 'Plan' }, { k: 'progress', l: lang === 'it' ? 'Progressi' : 'Progress' }, { k: 'messages', l: lang === 'it' ? 'Messaggi' : 'Inbox' }]
+      : [{ k: 'prolist', l: lang === 'it' ? 'Pazienti' : 'Patients' }, { k: 'library', l: t.libTitle }, { k: 'messages', l: lang === 'it' ? 'Messaggi' : 'Inbox' }];
+    const activeTab = s === 'prodetail' ? 'prolist' : s === 'libdetail' ? 'library' : s;
+    const tabs = tabDefs.map(d => {
+      const on = activeTab === d.k;
+      return {
+        label: d.l, go: () => this.go(d.k),
+        style: { flex: 1, minHeight: 52, border: 'none', background: 'transparent', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 5, fontFamily: "'DM Sans',sans-serif", color: on ? 'var(--acc,#0E5550)' : 'var(--faint,#6B6259)' },
+        isToday: d.k === 'home', isPlan: d.k === 'plan', isProgress: d.k === 'progress',
+        isMsg: d.k === 'messages', isPeople: d.k === 'prolist', isLib: d.k === 'library'
+      };
+    });
+
+    const metrics = lang === 'it'
+      ? [{ name: 'Ampiezza spalla', note: 'flessione attiva', val: '118°', up: true, d: '+14°' }, { name: 'Forza presa', note: 'mano destra', val: '19 kg', up: true, d: '+3' }, { name: 'Dolore medio', note: 'ultime 7 sessioni', val: '1.4', up: false, d: '−0.8' }]
+      : [{ name: 'Shoulder range', note: 'active flexion', val: '118°', up: true, d: '+14°' }, { name: 'Grip strength', note: 'right hand', val: '19 kg', up: true, d: '+3' }, { name: 'Average pain', note: 'last 7 sessions', val: '1.4', up: false, d: '−0.8' }];
+
+    const planGroups = [
+      {
+        title: t.planMotor,
+        items: (lang === 'it'
+          ? [{ id: 'm1', name: 'Elevazione della spalla', dose: '3 × 10', tag: 'nuovo' }, { id: 'm4', name: 'Presa e rilascio', dose: '3 × 12', tag: '' }, { id: 'm5', name: 'Estensione del polso', dose: '2 × 10', tag: '' }]
+          : [{ id: 'm1', name: 'Shoulder elevation', dose: '3 × 10', tag: 'new' }, { id: 'm4', name: 'Grip and release', dose: '3 × 12', tag: '' }, { id: 'm5', name: 'Wrist extension', dose: '2 × 10', tag: '' }]
+        ).map(i => ({ open: () => this.go('libdetail', { libSel: i.id, libFrom: 'plan' }), canOpen: true, name: i.name, dose: i.dose, tag: i.tag, tile: this.tile('motor'), dot: this.dot('motor'), tagStyle: { padding: '4px 10px', borderRadius: 20, fontSize: 11, fontWeight: 500, background: i.tag ? 'var(--accSoft,#E8F5F2)' : 'transparent', color: '#0E5550' } }))
+      },
+      {
+        title: t.planCog,
+        items: (lang === 'it'
+          ? [{ name: 'Memoria visiva', dose: '3 prove', tag: '' }, { name: 'Attenzione selettiva', dose: '4 min', tag: '' }]
+          : [{ name: 'Visual memory', dose: '3 trials', tag: '' }, { name: 'Selective attention', dose: '4 min', tag: '' }]
+        ).map(i => ({ open: null, canOpen: false, name: i.name, dose: i.dose, tag: i.tag, tile: this.tile('cog'), dot: this.dot('cog'), tagStyle: { padding: '4px 10px', borderRadius: 20, fontSize: 11, fontWeight: 500, background: 'transparent', color: '#534AB7' } }))
+      }
+    ];
+
+    const dayNames = lang === 'it' ? ['L', 'M', 'M', 'G', 'V', 'S', 'D'] : ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
+    const planWeek = dayNames.map((d, i) => ({
+      d, style: { flex: 1, borderRadius: 12, padding: '9px 0', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 7, background: i === 2 ? 'var(--acc,#0E5550)' : 'var(--surf,#FEFCF9)', color: i === 2 ? '#fff' : 'var(--sub,#5F574E)', border: '.5px solid var(--line,#EDE9E3)' },
+      dotStyle: { width: 8, height: 8, borderRadius: '50%', background: i === 2 ? '#fff' : (i < 2 ? '#2D9D8A' : 'var(--line,#EDE9E3)') }
+    }));
+
+    const btn = (on) => ({ width: '100%', height: 58, border: 'none', borderRadius: 14, background: on ? 'var(--acc,#0E5550)' : 'var(--line,#EDE9E3)', color: on ? '#fff' : 'var(--sub,#5F574E)', fontFamily: "'DM Sans',sans-serif", fontSize: 17, fontWeight: 500 });
+    const pillBtn = (on) => ({ padding: '7px 13px', borderRadius: 7, border: 'none', background: on ? 'var(--acc,#0E5550)' : 'transparent', color: on ? '#fff' : 'var(--sub,#5F574E)', fontFamily: "'DM Sans',sans-serif", fontSize: 12.5, fontWeight: 500 });
+
+    const lastBlock = st.exIdx >= 1;
+    const nextStep = () => {
+      if (st.sets < 2) { this.setState({ sets: st.sets + 1, reps: 0, sec: 0, running: false }); clearInterval(this._t); return; }
+      if (!lastBlock) { this.setState({ exIdx: st.exIdx + 1, sets: 0, reps: 0, sec: 0, running: false }); clearInterval(this._t); return; }
+      clearInterval(this._t);
+      this.setState({ running: false });
+      this.startTrial();
+      this.go('cog', { cogTrial: 1, cogScore: 0 });
+    };
+
+    const toggleTimer = () => {
+      clearInterval(this._t);
+      if (!st.running) { this._t = setInterval(() => this.setState(p => ({ sec: p.sec + 1 })), 1000); }
+      this.setState({ running: !st.running });
+    };
+
+    const mm = String(Math.floor(st.sec / 60)).padStart(2, '0') + ':' + String(st.sec % 60).padStart(2, '0');
+
+    const segBtn = (on) => ({ flex: 1, minHeight: 38, borderRadius: 8, border: 'none', background: on ? 'var(--surf,#FEFCF9)' : 'transparent', color: on ? 'var(--acc,#0E5550)' : 'var(--sub,#5F574E)', fontFamily: "'DM Sans',sans-serif", fontSize: 13.5, fontWeight: 500, boxShadow: on ? '0 1px 3px rgba(0,0,0,.08)' : 'none' });
+    const chipDefs = st.libMode === 'anat'
+      ? ['C3–C4', 'C5–C6', 'C6–C7', 'C7–C8', 'L4–L5', 'S1–S2'].map(k => ({ k, l: k }))
+      : st.libMode === 'func'
+        ? (lang === 'it'
+          ? [['upper', 'Arto superiore'], ['hand', 'Mano'], ['lower', 'Arto inferiore'], ['gait', 'Cammino'], ['balance', 'Equilibrio'], ['posture', 'Postura']]
+          : [['upper', 'Upper limb'], ['hand', 'Hand'], ['lower', 'Lower limb'], ['gait', 'Gait'], ['balance', 'Balance'], ['posture', 'Posture']]).map(p => ({ k: p[0], l: p[1] }))
+        : (lang === 'it'
+          ? [['mem', 'Memoria'], ['att', 'Attenzione'], ['lang', 'Linguaggio'], ['vis', 'Visuospaziale'], ['exec', 'Esecutive'], ['speech', 'Eloquio']]
+          : [['mem', 'Memory'], ['att', 'Attention'], ['lang', 'Language'], ['vis', 'Visuospatial'], ['exec', 'Executive'], ['speech', 'Speech']]).map(p => ({ k: p[0], l: p[1] }));
+
+    const q = st.libQ.trim().toLowerCase();
+    const libList = this.MOT.filter(m => {
+      const c = m[lang];
+      if (q && (c.name + ' ' + c.area).toLowerCase().indexOf(q) < 0) return false;
+      if (!st.libFilter) return true;
+      if (st.libMode === 'anat') return m.segs.indexOf(st.libFilter) >= 0;
+      return m.fam === st.libFilter;
+    });
+    const diffTint = (d) => {
+      if (d === 'Facile' || d === 'Easy') return { background: '#E1F5EE', color: '#1D7F60' };
+      if (d === 'Avanzata' || d === 'Advanced') return { background: '#FAECE7', color: '#B4441F' };
+      if (d === 'Adattiva' || d === 'Adaptive') return { background: 'var(--cogSoft,#EEEDFE)', color: '#3E3691' };
+      return { background: 'var(--accSoft,#E8F5F2)', color: 'var(--acc,#0E5550)' };
+    };
+    const detEx = this.MOT.filter(m => m.id === st.libSel)[0] || this.MOT[0];
+    const dc = detEx[lang];
+    const detVals = {
+      name: dc.name, area: dc.area, why: dc.why, diff: dc.diff, dur: detEx.dur, dose: detEx.dose,
+      phLabel: lang === 'it' ? 'video esercizio · 0:45' : 'exercise video · 0:45',
+      steps: dc.steps.map((x, i) => ({ n: String(i + 1), text: x })),
+      tags: detEx.segs.map(sg => ({ label: sg, style: { padding: '6px 12px', borderRadius: 20, fontSize: 12.5, fontWeight: 500, fontFamily: "'DM Mono',monospace", background: 'var(--accSoft,#E8F5F2)', color: 'var(--acc,#0E5550)' } }))
+        .concat([{ label: (chipDefs.filter(c => c.k === detEx.fam)[0] || { l: detEx.fam }).l, style: { padding: '6px 12px', borderRadius: 20, fontSize: 12.5, fontWeight: 500, background: 'var(--soft,#FAF8F4)', border: '.5px solid var(--line,#EDE9E3)', color: 'var(--sub,#5F574E)' } }])
+    };
+
+    const covered = { mem: true, att: true, lang: true, vis: true, exec: true, speech: true };
+    const cogDomains = (lang === 'it'
+      ? [['mem', 'Memoria'], ['att', 'Attenzione'], ['lang', 'Linguaggio'], ['vis', 'Visuospaziale'], ['exec', 'Funzioni esecutive'], ['speech', 'Eloquio / disartria']]
+      : [['mem', 'Memory'], ['att', 'Attention'], ['lang', 'Language'], ['vis', 'Visuospatial'], ['exec', 'Executive function'], ['speech', 'Speech / dysarthria']]
+    ).map(p => ({ k: p[0], l: p[1], covered: !!covered[p[0]] }));
+    const cogList = this.COG.filter(x => {
+      const c = x[lang];
+      if (q && (c.name + ' ' + c.sub + ' ' + c.dom).toLowerCase().indexOf(q) < 0) return false;
+      return !st.libFilter || x.dom === st.libFilter;
+    });
+    const cogGlyph = (shape) => {
+      if (shape === 'circle') return { width: 18, height: 18, borderRadius: '50%', border: '4px solid #D85A30' };
+      if (shape === 'square') return { width: 17, height: 17, borderRadius: 4, background: '#534AB7' };
+      if (shape === 'ring') return { width: 20, height: 20, borderRadius: '50%', border: '3px solid #1D7F60', boxShadow: 'inset 0 0 0 3px #E1F5EE, inset 0 0 0 6px #1D7F60' };
+      if (shape === 'bars') return { width: 20, height: 4, borderRadius: 2, background: '#0E5550', boxShadow: '0 -7px 0 #0E5550, 0 7px 0 #0E5550' };
+      if (shape === 'bubble') return { width: 18, height: 16, borderRadius: '9px 9px 3px 9px', background: '#0E5550' };
+      return { width: 15, height: 15, background: '#BA7517', transform: 'rotate(45deg)', borderRadius: 3 };
+    };
+    const setRev = (id, v) => { const r = Object.assign({}, st.cogRev); if (r[id] === v) delete r[id]; else r[id] = v; this.setState({ cogRev: r }); };
+    const revBtn = (on, col) => ({ flex: 1, minHeight: 44, borderRadius: 11, border: on ? 'none' : '.5px solid var(--line,#EDE9E3)', background: on ? col : 'var(--surf,#FEFCF9)', color: on ? '#fff' : 'var(--sub,#5F574E)', fontFamily: "'DM Sans',sans-serif", fontSize: 13.5, fontWeight: 500 });
+
+    return {
+      t, vars: this.themeVars(), zoomStyle: { flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden', zoom: zoom },
+      isNight: (this.props.theme || 'calmo') === 'notte',
+      setPatient: () => this.setState({ role: 'patient', screen: 'home', msgs: null }),
+      setPro: () => this.setState({ role: 'pro', screen: 'prolist', msgs: null }),
+      setIt: () => this.setState({ lang: 'it', msgs: null }), setEn: () => this.setState({ lang: 'en', msgs: null }),
+      roleBtnPat: pillBtn(st.role === 'patient'), roleBtnPro: pillBtn(st.role === 'pro'),
+      langBtnIt: pillBtn(lang === 'it'), langBtnEn: pillBtn(lang === 'en'),
+
+      isIntro: s === 'intro', isHome: s === 'home', isCheckin: s === 'checkin', isPlayer: s === 'player',
+      isCog: s === 'cog', isDone: s === 'done', isProgress: s === 'progress', isPlan: s === 'plan',
+      isMessages: s === 'messages', isProList: s === 'prolist', isProDetail: s === 'prodetail',
+      showTabs: ['home', 'plan', 'progress', 'messages', 'prolist', 'prodetail', 'library'].indexOf(s) >= 0,
+      tabs,
+      isLibrary: s === 'library', isLibDetail: s === 'libdetail',
+      libIsCog: st.libMode === 'cog', libIsMotor: st.libMode !== 'cog',
+      libQuery: st.libQ, setQuery: (e) => this.setState({ libQ: e.target.value }),
+      libTabAnat: segBtn(st.libMode === 'anat'), libTabFunc: segBtn(st.libMode === 'func'), libTabCog: segBtn(st.libMode === 'cog'),
+      setAnat: () => this.setState({ libMode: 'anat', libFilter: null }),
+      setFunc: () => this.setState({ libMode: 'func', libFilter: null }),
+      setCog: () => this.setState({ libMode: 'cog', libFilter: null }),
+      libChips: chipDefs.map(c => ({
+        label: c.l, tap: () => this.setState({ libFilter: st.libFilter === c.k ? null : c.k }),
+        style: {
+          flexShrink: 0, minHeight: 38, padding: '0 14px', borderRadius: 20, whiteSpace: 'nowrap',
+          border: '.5px solid ' + (st.libFilter === c.k ? 'transparent' : 'var(--line,#EDE9E3)'),
+          background: st.libFilter === c.k ? 'var(--acc,#0E5550)' : 'var(--surf,#FEFCF9)',
+          color: st.libFilter === c.k ? '#fff' : 'var(--sub,#5F574E)',
+          fontFamily: "'DM Sans',sans-serif", fontSize: 13.5, fontWeight: 500
+        }
+      })),
+      libCount: st.libMode === 'cog' ? String(this.COG.length) : libList.length + '/' + this.MOT.length,
+      libEmpty: st.libMode !== 'cog' && libList.length === 0,
+      libItems: libList.map(m => {
+        const c = m[lang];
+        return {
+          name: c.name, meta: m.dur + ' · ' + m.dose, diff: c.diff,
+          phLabel: lang === 'it' ? 'video esercizio' : 'exercise video',
+          open: () => this.go('libdetail', { libSel: m.id, libFrom: 'library' }),
+          thumb: { height: 106, background: 'repeating-linear-gradient(135deg,' + m.tint + ' 0 9px,#FAF8F4 9px 18px)', display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', padding: '9px 10px', gap: 6 },
+          playStyle: { width: 26, height: 26, borderRadius: '50%', background: 'rgba(14,85,80,.9)', flexShrink: 0, boxShadow: 'inset -3px 0 0 rgba(255,255,255,.001)' },
+          diffStyle: Object.assign({ alignSelf: 'flex-start', padding: '3px 9px', borderRadius: 20, fontSize: 11, fontWeight: 500 }, diffTint(c.diff))
+        };
+      }),
+      det: detVals, detThumb: { height: 240, flexShrink: 0, position: 'relative', background: 'repeating-linear-gradient(135deg,' + (detEx ? detEx.tint : '#E8F5F2') + ' 0 11px,#FAF8F4 11px 22px)' },
+      backToLib: () => this.go(st.libFrom || 'library'),
+      isProRole: st.role === 'pro',
+      detBackLabel: st.libFrom === 'player' ? (lang === 'it' ? 'Torna all’esercizio' : 'Back to exercise') : st.libFrom === 'plan' ? t.back : t.backToLib,
+      detBackStyle: st.role === 'pro'
+        ? { width: '100%', minHeight: 50, borderRadius: 14, border: '.5px solid var(--line,#EDE9E3)', background: 'var(--surf,#FEFCF9)', fontFamily: "'DM Sans',sans-serif", fontSize: 15, fontWeight: 500, color: 'var(--ink,#1C1814)' }
+        : { width: '100%', minHeight: 58, borderRadius: 14, border: 'none', background: 'var(--acc,#0E5550)', fontFamily: "'DM Sans',sans-serif", fontSize: 17, fontWeight: 500, color: '#fff' },
+      openHowTo: () => { clearInterval(this._t); this.go('libdetail', { libSel: st.exIdx >= 1 ? 'm4' : 'm1', libFrom: 'player', running: false }); },
+      addToPlan: () => { const a = Object.assign({}, st.added); a[st.libSel] = true; this.setState({ added: a }); },
+      addLabel: st.added[st.libSel] ? t.added : t.addPlan,
+      addBtnStyle: { width: '100%', minHeight: 56, borderRadius: 14, border: 'none', background: st.added[st.libSel] ? '#1D9E75' : 'var(--acc,#0E5550)', color: '#fff', fontFamily: "'DM Sans',sans-serif", fontSize: 16.5, fontWeight: 500 },
+
+      coverage: cogDomains.map(d => ({
+        label: d.l,
+        style: {
+          padding: '7px 12px', borderRadius: 20, fontSize: 13, fontWeight: 500,
+          background: d.covered ? 'var(--cogSoft,#EEEDFE)' : 'transparent',
+          color: d.covered ? '#3E3691' : '#8A5511',
+          border: d.covered ? '.5px solid transparent' : '1.5px dashed #BA7517'
+        }
+      })),
+      cogReviewed: Object.keys(st.cogRev).length + '/' + this.COG.length,
+      cogItems: cogList.map(x => {
+        const c = x[lang], r = st.cogRev[x.id];
+        return {
+          name: c.name, sub: c.sub, dom: c.dom, use: x.use, score: x.score, flag: c.flag,
+          tile: { width: 42, height: 42, borderRadius: 12, background: x.tint, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 },
+          glyph: cogGlyph(x.shape),
+          domStyle: { padding: '4px 10px', borderRadius: 20, fontSize: 11.5, fontWeight: 500, whiteSpace: 'nowrap', background: 'var(--cogSoft,#EEEDFE)', color: '#3E3691' },
+          flagStyle: { display: 'inline-flex', padding: '3px 9px', borderRadius: 20, fontSize: 12, fontWeight: 500, background: x.flag === 'ok' ? '#E1F5EE' : x.flag === 'new' ? 'var(--cogSoft,#EEEDFE)' : '#FAECE7', color: x.flag === 'ok' ? '#1D7F60' : x.flag === 'new' ? '#3E3691' : '#B4441F' },
+          keep: () => setRev(x.id, 'keep'), revise: () => setRev(x.id, 'revise'), retire: () => setRev(x.id, 'retire'),
+          keepStyle: revBtn(r === 'keep', '#1D9E75'), reviseStyle: revBtn(r === 'revise', '#534AB7'), retireStyle: revBtn(r === 'retire', '#D85A30'),
+          hasNote: r === 'revise' || (x.flag === 'bad' && !r), note: c.note
+        };
+      }),
+      proposeGap: () => this.setState({ proposed: true }),
+      proposeLabel: st.proposed ? t.proposed : t.propose,
+
+      obIs0: st.ob === 0, obIs1: st.ob === 1, obIs2: st.ob === 2,
+      ob0: this.seg(st.ob >= 0), ob1: this.seg(st.ob >= 1), ob2: this.seg(st.ob >= 2),
+      obCta: st.ob === 2 ? t.begin : t.next,
+      obNext: () => { if (st.ob < 2) this.setState({ ob: st.ob + 1 }); else this.go('home'); },
+      skipIntro: () => this.go('home'),
+      pickMorning: () => this.setState({ rem: 0 }), pickAfternoon: () => this.setState({ rem: 1 }), pickEvening: () => this.setState({ rem: 2 }),
+      remA: { width: '100%', minHeight: 56, borderRadius: 14, border: st.rem === 0 ? '2px solid #0E5550' : '.5px solid var(--line,#EDE9E3)', background: st.rem === 0 ? 'var(--accSoft,#E8F5F2)' : 'var(--surf,#FEFCF9)', fontFamily: "'DM Sans',sans-serif", fontSize: 16, color: 'var(--ink,#1C1814)' },
+      remB: { width: '100%', minHeight: 56, borderRadius: 14, border: st.rem === 1 ? '2px solid #0E5550' : '.5px solid var(--line,#EDE9E3)', background: st.rem === 1 ? 'var(--accSoft,#E8F5F2)' : 'var(--surf,#FEFCF9)', fontFamily: "'DM Sans',sans-serif", fontSize: 16, color: 'var(--ink,#1C1814)' },
+      remC: { width: '100%', minHeight: 56, borderRadius: 14, border: st.rem === 2 ? '2px solid #0E5550' : '.5px solid var(--line,#EDE9E3)', background: st.rem === 2 ? 'var(--accSoft,#E8F5F2)' : 'var(--surf,#FEFCF9)', fontFamily: "'DM Sans',sans-serif", fontSize: 16, color: 'var(--ink,#1C1814)' },
+
+      adhStreak: adh !== 'nessuno' && adh !== 'orto', adhGarden: adh === 'orto', adhAny: adh !== 'nessuno',
+      blocks: [
+        { name: lang === 'it' ? 'Come stai oggi?' : 'How are you today?', meta: lang === 'it' ? '3 domande · 1 min' : '3 questions · 1 min', idx: '01', tile: this.tile('check'), dot: this.dot('check') },
+        { name: this.EX[lang][0].name, meta: '3 × 10 · 5 min', idx: '02', tile: this.tile('motor'), dot: this.dot('motor') },
+        { name: this.EX[lang][1].name, meta: '3 × 12 · 4 min', idx: '03', tile: this.tile('motor'), dot: this.dot('motor') },
+        { name: t.visualMemory, meta: lang === 'it' ? '3 prove · 4 min' : '3 trials · 4 min', idx: '04', tile: this.tile('cog'), dot: this.dot('cog') }
+      ],
+      startSession: () => this.setState({ screen: 'checkin', ciStep: 0, ci: [0, 0, 0], exIdx: 0, reps: 0, sets: 0, sec: 0, cogScore: 0 }),
+      goHome: () => { clearInterval(this._t); this.go(st.role === 'patient' ? 'home' : 'prolist'); },
+      goMessages: () => this.go('messages'), goProgress: () => this.go('progress'), goProList: () => this.go('prolist'),
+
+      ciQ, ciLow: [t.ciLow1, t.ciLow2, t.ciLow3][st.ciStep], ciHigh: [t.ciHigh1, t.ciHigh2, t.ciHigh3][st.ciStep],
+      ciIcon: { width: 34, height: 34, borderRadius: st.ciStep === 1 ? 10 : '50%', border: '4px solid ' + ciIconColor, background: st.ciStep === 2 ? ciIconColor : 'transparent' },
+      ci0: this.seg(st.ciStep >= 0), ci1: this.seg(st.ciStep >= 1), ci2: this.seg(st.ciStep >= 2),
+      ciScale, ciCta: st.ciStep === 2 ? (lang === 'it' ? 'Inizia gli esercizi' : 'Start exercises') : t.next,
+      ciNextStyle: btn(st.ci[st.ciStep] > 0),
+      ciNext: () => { if (!st.ci[st.ciStep]) return; if (st.ciStep < 2) this.setState({ ciStep: st.ciStep + 1 }); else this.go('player'); },
+
+      pFocus: pst === 'focus', pCoach: pst === 'coach', pRitmo: pst === 'ritmo',
+      exName: ex.name, exWhy: ex.why, exCue: ex.cue,
+      pStep: (st.exIdx + 2) + '/4', reps: st.reps, setDots, clock: mm,
+      pg0: this.seg(true), pg1: this.seg(true), pg2: this.seg(st.exIdx >= 1), pg3: this.seg(false),
+      addRep: () => this.setState({ reps: st.reps + 1 }), subRep: () => this.setState({ reps: Math.max(0, st.reps - 1) }),
+      toggleTimer, timerLabel: st.running ? t.pause : t.go,
+      timerBtn: { padding: '13px 20px', borderRadius: 12, border: 'none', background: st.running ? 'var(--line,#EDE9E3)' : 'var(--acc,#0E5550)', color: st.running ? 'var(--sub,#6B6259)' : '#fff', fontFamily: "'DM Sans',sans-serif", fontSize: 15, fontWeight: 500, minHeight: 46 },
+      timerBtnWide: { flex: 1, height: 52, borderRadius: 13, border: '.5px solid var(--line,#EDE9E3)', background: 'var(--surf,#FEFCF9)', color: 'var(--ink,#1C1814)', fontFamily: "'DM Sans',sans-serif", fontSize: 15.5, fontWeight: 500 },
+      nextStep, nextBtn: btn(true),
+      nextLabel: st.sets < 2 ? (lang === 'it' ? 'Serie completata' : 'Set complete') : (lastBlock ? (lang === 'it' ? 'Passa alla memoria' : 'Go to memory') : (lang === 'it' ? 'Esercizio successivo' : 'Next exercise')),
+
+      cogCells, cogPrompt, cogScore: st.cogScore + '/3', cogCount: st.cogTrial + '/3',
+      cogProg: { height: '100%', width: (st.cogTrial / 3 * 100) + '%', background: '#534AB7', borderRadius: 4 },
+      cogCta: st.cogPhase === 'result' ? (cogLast ? t.cogEnd : t.cogNext) : t.cogReady,
+      cogBtn: { width: '100%', height: 58, border: 'none', borderRadius: 14, background: (cogReady || st.cogPhase === 'result') ? '#534AB7' : 'var(--line,#EDE9E3)', color: (cogReady || st.cogPhase === 'result') ? '#fff' : 'var(--sub,#5F574E)', fontFamily: "'DM Sans',sans-serif", fontSize: 17, fontWeight: 500 },
+      cogAction,
+
+      doneSub: t.doneSubA, doneMin: '14', doneReps: String(60 + st.reps),
+      rewardTitle: adh === 'orto' ? t.rewardGarden : t.rewardStreak,
+      rewardSub: adh === 'orto' ? t.rewardGardenSub : t.rewardStreakSub,
+
+      weekDays: dayNames, metrics: metrics.map(m => ({ name: m.name, note: m.note, val: m.val, trend: m.d, trendStyle: { padding: '4px 9px', borderRadius: 20, fontSize: 12, fontWeight: 500, fontFamily: "'DM Mono',monospace", background: m.up ? '#E1F5EE' : '#E1F5EE', color: '#1D9E75' } })),
+      planWeek, planGroups,
+
+      msgs: msgs.map(m => Object.assign({ text: m.text }, bubble(m.f))),
+      threadName: st.role === 'patient' ? 'Dr.ssa Giulia Riva' : P.name,
+      threadInitials: st.role === 'patient' ? 'GR' : P.ini,
+      threadRole: st.role === 'patient' ? t.obTherapistRole : (lang === 'it' ? P.dxIt : P.dxEn),
+      quickReplies: [t.qr1, t.qr2, t.qr3].map(l => ({ label: l, send: send(l) })),
+
+      patients: patients.map((p, i) => ({
+        ini: p.ini, name: p.name, meta: (lang === 'it' ? p.dxIt : p.dxEn) + ' · ' + p.adh,
+        open: () => this.go('prodetail', { sel: i, msgs: null }),
+        ring: { width: 48, height: 48, borderRadius: '50%', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'conic-gradient(' + (p.ok ? '#2D9D8A' : '#D85A30') + ' ' + p.pct + '%, var(--line,#EDE9E3) 0)' },
+        tag: lang === 'it' ? p.tagIt : p.tagEn,
+        tagStyle: { padding: '4px 10px', borderRadius: 20, fontSize: 11.5, fontWeight: 500, whiteSpace: 'nowrap', background: p.ok ? 'var(--accSoft,#E8F5F2)' : '#FAECE7', color: p.ok ? '#0E5550' : '#D85A30' }
+      })),
+      sel: {
+        ini: P.ini, name: P.name, dx: lang === 'it' ? P.dxIt : P.dxEn, adh: P.adh, sessions: P.sessions, week: P.week,
+        hasAlert: P.alert, alertText: P.alert ? (lang === 'it' ? P.alertIt : P.alertEn) : '',
+        log: (lang === 'it'
+          ? [{ name: 'Elevazione della spalla', done: '3 × 10 · 4:20', pain: '1/5', ok: true }, { name: 'Presa e rilascio', done: '2 × 12 · 3:05', pain: '4/5', ok: false }, { name: 'Memoria visiva', done: '2/3 corrette', pain: '—', ok: true }, { name: 'Check-in', done: 'energia 3 · umore 4', pain: '—', ok: true }]
+          : [{ name: 'Shoulder elevation', done: '3 × 10 · 4:20', pain: '1/5', ok: true }, { name: 'Grip and release', done: '2 × 12 · 3:05', pain: '4/5', ok: false }, { name: 'Visual memory', done: '2/3 correct', pain: '—', ok: true }, { name: 'Check-in', done: 'energy 3 · mood 4', pain: '—', ok: true }]
+        ).map(l => ({ name: l.name, done: l.done, pain: l.pain, painStyle: { padding: '4px 10px', borderRadius: 20, fontSize: 12, fontFamily: "'DM Mono',monospace", background: l.ok ? 'var(--soft,#FAF8F4)' : '#FAECE7', color: l.ok ? 'var(--sub,#6B6259)' : '#D85A30' } }))
+      },
+      goThread: () => this.go('messages'),
+      adaptPlan: () => this.setState({ adapted: true }),
+      adaptLabel: st.adapted ? t.adapted : t.adapt
+    };
+  }
+}
+</script>
+</body>
+</html>
